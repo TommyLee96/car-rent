@@ -2,7 +2,7 @@
 #define ADMIN_H
 
 #include <QDialog>
-
+class QSqlTableModel;
 namespace Ui {
 class admin;
 }
@@ -22,6 +22,10 @@ private slots:
 
 private:
     Ui::admin *ui;
+    QSqlTableModel *model;
+    QSqlTableModel *model2;
+    QSqlTableModel *model3;
+    QSqlTableModel *model4;
 
 };
 

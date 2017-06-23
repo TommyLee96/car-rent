@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>manager</class>
  <widget class="QDialog" name="manager">
@@ -5,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>874</width>
+    <height>448</height>
    </rect>
   </property>
   <property name="windowTitle">
