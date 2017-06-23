@@ -1,18 +1,21 @@
 #include<QMessageBox>
 #include<QSqlQuery>
+#include<QDebug>
+#include <QtNetwork>
 #include "login.h"
 #include "ui_login.h"
 #include"global.h"
 #include"admin.h"
 #include"finance.h"
 #include"manager.h"
+#include <QtNetwork/qnetworkaccessmanager.h>
+#include <QtNetwork/qnetworkrequest.h>
 login::login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::login)
 {
     ui->setupUi(this);
     ui->password->setEchoMode( QLineEdit::Password );
-
 }
 
 login::~login()
@@ -50,6 +53,7 @@ void login::on_pushButton_clicked()
              if(query2.value(1).toString() == password)
              {
                   //userinfo=username;
+                 qDebug()<<"caiwu  "<<flag<<"";
                   accept(); //user++;
                   this->close();
              }
@@ -92,6 +96,11 @@ void login::on_pushButton_clicked()
              if(query2.value(1).toString() == password)
              {
                   //userinfo=username;
+                  qDebug()<<"guanli "<<flag<<"";
+                  QNetworkAccessManager* manager=new QNetworkAccessManager(this);
+                      QNetworkRequest request;
+                      request.setUrl(QUrl("https://sc.ftqq.com/SCU8983Tc368ce0619fe334835f91607b35602d659391d20345f6.send?text=有人租车啦~"));
+                      QNetworkReply* reply=manager->get(request);
                   accept(); //user++;
                   this->close();
              }
@@ -131,6 +140,7 @@ void login::on_pushButton_clicked()
               if(query2.value(1).toString() == password)
               {
                    //userinfo=username;
+                   qDebug()<<"dendian  "<<flag<<"";
                    accept(); //user++;
                    this->close();
               }

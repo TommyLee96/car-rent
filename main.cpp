@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
            manager1.show();
            return a.exec();
         }//分店登陆
+
     }
     return a.exec();
 }

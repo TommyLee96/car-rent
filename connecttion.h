@@ -10,6 +10,7 @@ bool connected=false;
 static bool createConnection()
 {
 
+
     QSqlDatabase db=QSqlDatabase::addDatabase("QODBC");
     db.setDatabaseName(QString("DRIVER={SQL SERVER};"
                                            "SERVER=%1;" //服务器名称
@@ -18,10 +19,11 @@ static bool createConnection()
                                            "PWD=%4;"
                                            ).arg("106.14.165.15")//服务器名称106.14.165.15
                                    .arg("SqlProjectDesign")//数据库名
-                                   .arg("han")//登录名
-                                   .arg("123123")//密码
+                                   .arg("lzw")//登录名
+                                   .arg("111")//密码
                                    );
     QSqlQuery search(db);
+
     if(!db.open())
     {
         connected=false;
@@ -35,7 +37,7 @@ static bool createConnection()
     {
      qDebug()<<search.value(1).toString();
     }
-    search.exec();
+    //search.exec();
     return connected=true;
     return true;
 }
