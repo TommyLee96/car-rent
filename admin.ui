@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>310</y>
+     <x>670</x>
+     <y>300</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -138,11 +138,22 @@
     </widget>
    </widget>
   </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>370</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
   <zorder>tabWidget</zorder>
   <zorder>pushButton</zorder>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>pushButton_2</zorder>
+  <zorder>lineEdit</zorder>
  </widget>
  <resources/>
  <connections/>

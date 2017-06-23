@@ -35,6 +35,7 @@ static bool createConnection()
     {
      qDebug()<<search.value(1).toString();
     }
+    search.exec();
     return connected=true;
     return true;
 }

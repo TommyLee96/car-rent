@@ -152,6 +152,6 @@ void login::on_pushButton_clicked()
            ui->user->setFocus();
        }
     }
-   // this->close();
+
 }
 
