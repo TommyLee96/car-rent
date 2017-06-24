@@ -3,7 +3,6 @@
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include<QDebug>
 #include"connecttion.h"
 extern bool connected;
 bool connected=false;
@@ -22,7 +21,6 @@ static bool createConnection()
                                    .arg("lzw")//登录名
                                    .arg("111")//密码
                                    );
-    QSqlQuery search(db);
 
     if(!db.open())
     {
@@ -31,13 +29,7 @@ static bool createConnection()
         //return;
     }
     //检查此车辆是否合法
-    QString clientid="111";
-    search.exec(QString("select * from clientinfo where clientid='%1'").arg(clientid));
-    while(search.next())
-    {
-     qDebug()<<search.value(1).toString();
-    }
-    //search.exec();
+
     return connected=true;
     return true;
 }

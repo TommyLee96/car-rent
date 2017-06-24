@@ -7,6 +7,9 @@
 QT       += core gui
 QT       += sql
 QT+= network
+QMAKE_CFLAGS+=-pg
+QMAKE_CXXFLAGS += -pg
+QMAKE_LFLAGS += -pg
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = sql

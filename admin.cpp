@@ -18,60 +18,47 @@ admin::admin(QWidget *parent) :
     ui(new Ui::admin)
 {
     ui->setupUi(this);
-    connect(ui->tableView_2, SIGNAL(clicked ( const QModelIndex &)), this,
-      SLOT(show1()));
+    connect(ui->tableView_2, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show1()));
+     //connect(dataTabView_, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(slotRowDoubleClicked(const QModelIndex &)));
+    qDebug()<<"currentTime0--"<<QTime::currentTime().toString(Qt::ISODate);
 
-
-   //connect(dataTabView_, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(slotRowDoubleClicked(const QModelIndex &)));
-    QSqlQuery query;
-      query.exec("select cartypeid,carmodel from carmodel");
-       while(query.next())
-       {
-
-           qDebug()<<query.value(1).toString()<<query.value(0).toString()<<query.value(2).toString()<<query.value(3).toString();
-
-       }
-
-    qDebug()<<"currentTime0--"<<QTime::currentTime().toString(Qt::ISODate)
-            <<QDateTime::currentDateTime().toString(Qt::ISODate)
-            <<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz");
-
-    /*model = new QSqlTableModel(this);
-     //model->setQuery("select * from shopinfo");
+/*  model = new QSqlTableModel(this);
+//  model->setQuery("select * from shopinfo");
     model->setTable("carmodel");
     model->select();
     // 设置编辑策略
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-   ui->tableView->setModel(model);
-    //ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);  //设置表格列宽度自适应
-   // ui->tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
-   // ui->tableView->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
+    ui->tableView->setModel(model);
+//  ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);  //设置表格列宽度自适应
+//  ui->tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
+//  ui->tableView->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
     qDebug()<<"currentTime1--"<<QTime::currentTime().toString(Qt::ISODate)
             <<QDateTime::currentDateTime().toString(Qt::ISODate)
             <<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz");
 */
     model2 = new QSqlTableModel(this);
-    //model3->setFilter(QString("carid = '1'"));
+//  model3->setFilter(QString("carid = '1'"));
     model2->setTable("carmodel");
     model2->select();
     model2->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     ui->tableView_2->setModel(model2);
-    ui->tableView_2->hideColumn(7);
     ui->tableView_2->hideColumn(2);
     ui->tableView_2->hideColumn(3);
     ui->tableView_2->hideColumn(4);
     ui->tableView_2->hideColumn(5);
     ui->tableView_2->hideColumn(6);
+    ui->tableView_2->hideColumn(7);
     ui->tableView_2->hideColumn(8);
     ui->tableView_2->hideColumn(9);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);  //设置表格列宽度自适应
-    ui->tableView_2->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
+    //ui->tableView_2->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
+    ui->tableView_2->verticalHeader()->setVisible(false);
+    ui->tableView_2->setSelectionBehavior ( QAbstractItemView::SelectRows);
+    ui->tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView_2->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
     ui->tableView_2->setAlternatingRowColors(true); //使用交替行颜色
-    qDebug()<<"currentTime2--"<<QTime::currentTime().toString(Qt::ISODate)
-            <<QDateTime::currentDateTime().toString(Qt::ISODate)
-            <<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz");
+    qDebug()<<"currentTime2--"<<QTime::currentTime().toString(Qt::ISODate);
 
    /* model3 = new QSqlTableModel(this);
     model3->setTable("carinfo");
@@ -108,9 +95,9 @@ admin::admin(QWidget *parent) :
 */
 
     QSqlQuery query6;
-    qDebug()<<model2->index(1,0).data().toString();
-    query6.exec(QString("select * from carmodel where cartypeid='%1'").arg(model2->index(1,0).data().toString()));
-   while(query6.next())
+    qDebug()<<model2->index(0,0).data().toString();
+    query6.exec(QString("select * from carmodel where cartypeid='%1'").arg(model2->index(0,0).data().toString()));
+    while(query6.next())
     {
      ui->label->setText(query6.value(0).toString());
      ui->label->hide();          //label目的是获取当前显示车型的情况
@@ -119,13 +106,16 @@ admin::admin(QWidget *parent) :
      ui->lineEdit_3->setText(query6.value(3).toString());
      ui->lineEdit_4->setText(query6.value(4).toString());
      ui->lineEdit_5->setText(query6.value(5).toString());
-     ui->lineEdit_6->setText(query.value(6).toString());
-     ui->label_3->setText(query.value(8).toString());
-     ui->label_4->setText(query.value(9).toString());
+     ui->lineEdit_6->setText(query6.value(6).toString());
+     ui->label_3->setText(query6.value(8).toString());
+     ui->label_4->setText(query6.value(9).toString());
      QPixmap photo;
      photo.loadFromData(query6.value(7).toByteArray(), "jpg"); //从数据库中读出图片为二进制数据，图片格式为png，然后显示到QLabel里
      ui->label_2->setPixmap(photo);
+     ui->listView->setModel(model2);
+     ui->listView->setModelColumn(1);
     }
+   query6.exec();
 }
 
 admin::~admin()
@@ -144,7 +134,7 @@ void admin::show1()
     // query.addBindValue(model2->index(curRow,0).data().toString());
      while(query.next())
      {
-         ui->label->setText(query.value(0).toString());
+         ui->label->setText(query.value(0).toString());   //label存储点击哪一辆车
          ui->label->hide();
          ui->lineEdit->setText(query.value(1).toString());
          ui->lineEdit_2->setText(query.value(2).toString());
@@ -158,6 +148,7 @@ void admin::show1()
          photo.loadFromData(query.value(7).toByteArray(), "jpg"); //从数据库中读出图片为二进制数据，图片格式为png，然后显示到QLabel里
          ui->label_2->setPixmap(photo);
      }
+     query.exec();
 }
 void admin::on_pushButton_clicked()
 {
@@ -205,12 +196,12 @@ void admin::on_pushButton_2_clicked()
     int uuu6=ui->lineEdit_6->text().toInt();
     QString uuu7=creator;
     QString uuu8=ui->label->text();
+    QString uuu9=QDateTime::currentDateTime().toString("yyyy-MM-dd");
 
 
-
-    qDebug()<<uuu2<<"hhaha"<<uuu<<uuu8;
+    qDebug()<<uuu7<<"hhaha"<<uuu8<<uuu9;
     //query.prepare("UPDATE carmodel SET carmodel=? and fuelid=? where cartypeid=?");
-   query.prepare("UPDATE carmodel SET carmodel=?,fuelid=?,rentmoney=?,dayrentmoney=?,avgkilm=?,overkilmmoney=? where cartypeid=?");
+   query.prepare("UPDATE carmodel SET carmodel=?,fuelid=?,rentmoney=?,dayrentmoney=?,avgkilm=?,overkilmmoney=?,creater=?,amenddate=? where cartypeid=?");
 
     //query.prepare("UPDATE carmodel SET carmodel=? and fuelid=? and rentmoney=? and dayrentmoney=? and avgkilm=? and overkilmmoney=? and creater=?  where cartypeid=?");
     query.addBindValue(uuu);
@@ -219,10 +210,12 @@ void admin::on_pushButton_2_clicked()
     query.addBindValue(uuu4);
     query.addBindValue(uuu5);
     query.addBindValue(uuu6);
-    //query.addBindValue(uuu7);
+    query.addBindValue(uuu7);
+    query.addBindValue(uuu9);
     query.addBindValue(uuu8);
     // model2->setTable("carmodel");
-
+    ui->label_3->setText(uuu7);
+    ui->label_4->setText(uuu9);
     //1model2->select();
     query.exec();
     model2->select();
