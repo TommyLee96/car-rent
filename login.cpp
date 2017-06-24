@@ -2,7 +2,6 @@
 #include<QSqlQuery>
 #include<QDebug>
 #include<QTime>
-#include <QtNetwork>
 #include "login.h"
 #include "ui_login.h"
 #include"global.h"
@@ -103,10 +102,6 @@ void login::on_pushButton_clicked()
              {
                   //userinfo=username;
                   qDebug()<<"guanli "<<flag<<"";
-                  QNetworkAccessManager* manager=new QNetworkAccessManager(this);
-                      QNetworkRequest request;
-                      request.setUrl(QUrl("https://sc.ftqq.com/SCU8983Tc368ce0619fe334835f91607b35602d659391d20345f6.send?text=有人租车啦~"));
-                      QNetworkReply* reply=manager->get(request);
                   accept(); //user++;
                   this->close();
              }

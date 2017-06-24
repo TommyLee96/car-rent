@@ -6,8 +6,10 @@
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
 #include <QTableView>
+#include <QSqlError>
 #include <QDebug>
 #include <QMessageBox>
+#include <QtNetwork>
 //#include <QSqlError>
 #include "admin.h"
 #include "ui_admin.h"
@@ -55,7 +57,7 @@ admin::admin(QWidget *parent) :
     //ui->tableView_2->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
     ui->tableView_2->verticalHeader()->setVisible(false);
     ui->tableView_2->setSelectionBehavior ( QAbstractItemView::SelectRows);
-    ui->tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //ui->tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView_2->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
     ui->tableView_2->setAlternatingRowColors(true); //使用交替行颜色
     qDebug()<<"currentTime2--"<<QTime::currentTime().toString(Qt::ISODate);
@@ -148,7 +150,7 @@ void admin::show1()
          photo.loadFromData(query.value(7).toByteArray(), "jpg"); //从数据库中读出图片为二进制数据，图片格式为png，然后显示到QLabel里
          ui->label_2->setPixmap(photo);
      }
-     query.exec();
+     //query.exec();
 }
 void admin::on_pushButton_clicked()
 {
@@ -219,5 +221,51 @@ void admin::on_pushButton_2_clicked()
     //1model2->select();
     query.exec();
     model2->select();
+   QString hehe=creator+"修改信息了";
+    // 基本 URL
+    QString baseUrl = "https://sc.ftqq.com/SCU8983Tc368ce0619fe334835f91607b35602d659391d20345f6.send?text=";
+    // 设置发送的数据
+    QByteArray bytes;
+   // bytes.append("type=content&");
+    bytes.append(QString("%1").arg(hehe));  // Qt 作为变量输入
+    // 组合 URL
+    baseUrl += bytes;
+    //QUrl url(baseUrl);
+    qDebug() <<baseUrl;
+    QNetworkAccessManager* manager=new QNetworkAccessManager(this);
+        QNetworkRequest request;
+        request.setUrl(baseUrl);
+        QNetworkReply* reply=manager->get(request);
     QMessageBox::information(this,tr("提示"),tr("修改成功！      \n\n     "));
+}
+
+void admin::on_pushButton_3_clicked()
+{
+    int rowNum = model2->rowCount();
+    int id = 10;
+
+    // 添加一行
+    model2->insertRow(rowNum);
+    model2->setData(model2->index(rowNum, 0), id);
+
+    // 可以直接提交
+    //model->submitAll();
+}
+
+
+
+void admin::on_pushButton_4_clicked()
+{
+    // 开始事务操作
+    model2->database().transaction();
+    if (model2->submitAll()) {
+        if(model2->database().commit()) // 提交
+            QMessageBox::information(this, tr("tableModel"),
+                                     tr("数据修改成功！"));
+    } else {
+        model2->database().rollback(); // 回滚
+        QMessageBox::warning(this, tr("tableModel"),
+                             tr("database error: %1").arg(model2->lastError().text()),
+                             QMessageBox::Ok);
+    }
 }
