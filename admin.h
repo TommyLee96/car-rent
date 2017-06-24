@@ -17,6 +17,8 @@ public:
     //QVariant  var_5;
 private slots:
     void on_pushButton_clicked();
+    void show1();
+
 
     void on_pushButton_2_clicked();
 
@@ -26,6 +28,7 @@ private:
     QSqlTableModel *model2;
     QSqlTableModel *model3;
     QSqlTableModel *model4;
+    //getinfo(const QModelIndex &);
 
 };
 

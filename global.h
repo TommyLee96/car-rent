@@ -1,5 +1,7 @@
 #ifndef GLOBAL
 #define GLOBAL
-//extern int flag;
+#include<QString>
+extern QString creator;
+
 #endif // GLOBAL
 

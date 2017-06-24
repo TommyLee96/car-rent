@@ -1,6 +1,7 @@
 #include<QMessageBox>
 #include<QSqlQuery>
 #include<QDebug>
+#include<QTime>
 #include <QtNetwork>
 #include "login.h"
 #include "ui_login.h"
@@ -26,6 +27,7 @@ login::~login()
 void login::on_pushButton_clicked()
 {
     QString username = ui->user->text();
+    QString creator=username;
     QString password = ui->password->text();
     if(username.isEmpty() || password.isEmpty())
     {
@@ -43,7 +45,9 @@ void login::on_pushButton_clicked()
       flag=0;
       int flag_user=1;
       QSqlQuery query2;
-      query2.exec("select clientid,password,type from clientinfo");
+      query2.exec(QString("select clientid,password,type from clientinfo where clientid='%1' and type='%2'").arg(username).arg(flag));
+
+      //query2.exec("select clientid,password,type from clientinfo");
       while(query2.next())
       {
 
@@ -86,7 +90,9 @@ void login::on_pushButton_clicked()
       flag=1;
       int flag_admin=1;
       QSqlQuery query2;
-      query2.exec("select clientid,password,type from clientinfo");
+      query2.exec(QString("select clientid,password,type from clientinfo where clientid='%1' and type='%2'").arg(username).arg(flag));
+
+      //query2.exec("select clientid,password,type from clientinfo");
       while(query2.next())
       {
 
@@ -130,7 +136,9 @@ void login::on_pushButton_clicked()
        flag=2;
        int flag_manager=1;
        QSqlQuery query2;
-       query2.exec("select clientid,password,type from clientinfo");
+       query2.exec(QString("select clientid,password,type from clientinfo where clientid='%1' and type='%2'").arg(username).arg(flag));
+
+       //query2.exec("select clientid,password,type from clientinfo");
        while(query2.next())
        {
 

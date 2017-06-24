@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     login.cpp \
     admin.cpp \
     finance.cpp \
-    manager.cpp
+    manager.cpp \
+    global.cpp
 
 HEADERS  += mainwindow.h \
     connecttion.h \

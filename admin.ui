@@ -13,65 +13,13 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>670</x>
-     <y>300</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>760</x>
-     <y>80</y>
-     <width>61</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>670</x>
-     <y>190</y>
-     <width>171</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>750</x>
-     <y>300</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
-     <width>911</width>
-     <height>481</height>
+     <y>10</y>
+     <width>941</width>
+     <height>641</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -79,81 +27,187 @@
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
-     <string>门店信息</string>
+     <string>Tab 1</string>
     </attribute>
-    <widget class="QTableView" name="tableView">
+    <widget class="QTableView" name="tableView_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>0</y>
-       <width>591</width>
-       <height>441</height>
+       <width>401</width>
+       <height>421</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>230</y>
+       <width>131</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>修改当前车型图片</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>0</y>
+       <width>421</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>570</x>
+       <y>300</y>
+       <width>160</width>
+       <height>188</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="0">
+       <widget class="QLineEdit" name="lineEdit_3"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLineEdit" name="lineEdit_4"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLineEdit" name="lineEdit_5"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_2"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLineEdit" name="lineEdit_6"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>500</y>
+       <width>91</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>确认修改信息</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>250</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>300</y>
+       <width>61</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>车型</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>燃油编号</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>租金</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>日租金</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>日平均公里</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>超公里费用</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>490</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>720</x>
+       <y>510</y>
+       <width>158</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
      </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>车型信息</string>
+     <string>Tab 2</string>
     </attribute>
-    <widget class="QTableView" name="tableView_2">
-     <property name="geometry">
-      <rect>
-       <x>-20</x>
-       <y>0</y>
-       <width>601</width>
-       <height>411</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab_3">
-    <attribute name="title">
-     <string>车辆信息</string>
-    </attribute>
-    <widget class="QTableView" name="tableView_3">
-     <property name="geometry">
-      <rect>
-       <x>-10</x>
-       <y>0</y>
-       <width>601</width>
-       <height>381</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab_4">
-    <attribute name="title">
-     <string>订单信息</string>
-    </attribute>
-    <widget class="QTableView" name="tableView_4">
-     <property name="geometry">
-      <rect>
-       <x>-5</x>
-       <y>1</y>
-       <width>631</width>
-       <height>441</height>
-      </rect>
-     </property>
-    </widget>
    </widget>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>690</x>
-     <y>370</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <zorder>tabWidget</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>pushButton_2</zorder>
-  <zorder>lineEdit</zorder>
  </widget>
  <resources/>
  <connections/>
