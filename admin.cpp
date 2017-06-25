@@ -41,10 +41,13 @@ admin::admin(QWidget *parent) :
     model2 = new QSqlTableModel(this);
 //  model3->setFilter(QString("carid = '1'"));
     model2->setTable("carmodel");
+
     model2->select();
+    QApplication::processEvents();
     model2->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     ui->tableView_2->setModel(model2);
+    ui->tableView_2->hideColumn(0);
     ui->tableView_2->hideColumn(2);
     ui->tableView_2->hideColumn(3);
     ui->tableView_2->hideColumn(4);
@@ -242,12 +245,22 @@ void admin::on_pushButton_2_clicked()
 void admin::on_pushButton_3_clicked()
 {
     int rowNum = model2->rowCount();
-    int id = 10;
-
+    //int id = 10;
+    QString info="请编辑";
     // 添加一行
     model2->insertRow(rowNum);
-    model2->setData(model2->index(rowNum, 0), id);
+    model2->setData(model2->index(rowNum, 1), info);
+    //ui->tableView_2->setFocus();
+    ui->tableView_2->selectRow(model2->rowCount());
+    //ui->tableView_2->setCurrentCell(model2->rowCount(), QItemSelectionModel::Select);
+    //ui->tableView_2->setCurrentIndex(model2->index(rowNum, 1));
+    //ui->tableView_2->setCurrentRow (model2->rowCount()+1;
+  //  QItemSelectionModel::SelectionFlags flags = QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows;
+   // QModelIndex index = ui->tableView_2->model()->index(model2->rowCount(),1);
 
+
+
+   //ui->tableView_2->selectionModel()->select(index, flags);
     // 可以直接提交
     //model->submitAll();
 }
@@ -259,9 +272,14 @@ void admin::on_pushButton_4_clicked()
     // 开始事务操作
     model2->database().transaction();
     if (model2->submitAll()) {
+
         if(model2->database().commit()) // 提交
+        {
+             model2->select();
             QMessageBox::information(this, tr("tableModel"),
                                      tr("数据修改成功！"));
+            }
+         //model2->select();
     } else {
         model2->database().rollback(); // 回滚
         QMessageBox::warning(this, tr("tableModel"),
