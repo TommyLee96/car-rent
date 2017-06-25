@@ -8,6 +8,7 @@
 #include <QTableView>
 #include <QSqlError>
 #include <QDebug>
+#include<QString>
 #include <QMessageBox>
 #include <QtNetwork>
 //#include <QSqlError>
@@ -21,6 +22,7 @@ admin::admin(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->tableView_2, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show1()));
+    // connect(ui->pushButton_5, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show1()));
      //connect(dataTabView_, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(slotRowDoubleClicked(const QModelIndex &)));
     qDebug()<<"currentTime0--"<<QTime::currentTime().toString(Qt::ISODate);
 
@@ -99,28 +101,17 @@ admin::admin(QWidget *parent) :
     //ui->tableView->setUpdatesEnabled(false);
 */
 
-    QSqlQuery query6;
+   // QSqlQuery query6;
     qDebug()<<model2->index(0,0).data().toString();
-    query6.exec(QString("select * from carmodel where cartypeid='%1'").arg(model2->index(0,0).data().toString()));
-    while(query6.next())
-    {
-     ui->label->setText(query6.value(0).toString());
-     ui->label->hide();          //label目的是获取当前显示车型的情况
-     ui->lineEdit->setText(query6.value(1).toString());
-     ui->lineEdit_2->setText(query6.value(2).toString());
-     ui->lineEdit_3->setText(query6.value(3).toString());
-     ui->lineEdit_4->setText(query6.value(4).toString());
-     ui->lineEdit_5->setText(query6.value(5).toString());
-     ui->lineEdit_6->setText(query6.value(6).toString());
-     ui->label_3->setText(query6.value(8).toString());
-     ui->label_4->setText(query6.value(9).toString());
-     QPixmap photo;
-     photo.loadFromData(query6.value(7).toByteArray(), "jpg"); //从数据库中读出图片为二进制数据，图片格式为png，然后显示到QLabel里
-     ui->label_2->setPixmap(photo);
-     ui->listView->setModel(model2);
-     ui->listView->setModelColumn(1);
-    }
-   query6.exec();
+  showinfo(model2->index(15,0).data().toInt());
+  ui->lineEdit->setStyleSheet("background-color:transparent");
+   ui->lineEdit_2->setStyleSheet("background-color:transparent");
+    ui->lineEdit_3->setStyleSheet("background-color:transparent");
+     ui->lineEdit_4->setStyleSheet("background-color:transparent");
+      ui->lineEdit_5->setStyleSheet("background-color:transparent");
+       ui->lineEdit_6->setStyleSheet("background-color:transparent");
+    //query6.exec(QString("select * from carmodel where cartypeid='%1'").arg(model2->index(0,0).data().toString()));
+
 }
 
 admin::~admin()
@@ -132,28 +123,9 @@ void admin::show1()
     int curRow = ui->tableView_2->currentIndex().row();
     QSqlQuery query;
      qDebug()<<model2->index(curRow,0).data().toString();
-     query.exec(QString("select * from carmodel where cartypeid='%1'").arg(model2->index(curRow,0).data().toString()));
+     showinfo(model2->index(curRow,0).data().toInt());
 
-    //query.prepare("select * from carmodel where cartypeid=?");
 
-    // query.addBindValue(model2->index(curRow,0).data().toString());
-     while(query.next())
-     {
-         ui->label->setText(query.value(0).toString());   //label存储点击哪一辆车
-         ui->label->hide();
-         ui->lineEdit->setText(query.value(1).toString());
-         ui->lineEdit_2->setText(query.value(2).toString());
-         ui->lineEdit_3->setText(query.value(3).toString());
-         ui->lineEdit_4->setText(query.value(4).toString());
-         ui->lineEdit_5->setText(query.value(5).toString());
-         ui->lineEdit_6->setText(query.value(6).toString());
-         ui->label_3->setText(query.value(8).toString());
-          ui->label_4->setText(query.value(9).toString());
-         QPixmap photo;
-         photo.loadFromData(query.value(7).toByteArray(), "jpg"); //从数据库中读出图片为二进制数据，图片格式为png，然后显示到QLabel里
-         ui->label_2->setPixmap(photo);
-     }
-     //query.exec();
 }
 void admin::on_pushButton_clicked()
 {
@@ -193,7 +165,7 @@ void admin::on_pushButton_clicked()
 void admin::on_pushButton_2_clicked()
 {
     QSqlQuery query;
-    QString uuu=ui->lineEdit->text();
+   /* QString uuu=ui->lineEdit->text();
     QString uuu2=ui->lineEdit_2->text();
     int uuu3=ui->lineEdit_3->text().toInt();
     int uuu4=ui->lineEdit_4->text().toInt();
@@ -202,26 +174,24 @@ void admin::on_pushButton_2_clicked()
     QString uuu7=creator;
     QString uuu8=ui->label->text();
     QString uuu9=QDateTime::currentDateTime().toString("yyyy-MM-dd");
-
-
-    qDebug()<<uuu7<<"hhaha"<<uuu8<<uuu9;
+   */
     //query.prepare("UPDATE carmodel SET carmodel=? and fuelid=? where cartypeid=?");
-   query.prepare("UPDATE carmodel SET carmodel=?,fuelid=?,rentmoney=?,dayrentmoney=?,avgkilm=?,overkilmmoney=?,creater=?,amenddate=? where cartypeid=?");
+    query.prepare("UPDATE carmodel SET carmodel=?,fuelid=?,rentmoney=?,dayrentmoney=?,avgkilm=?,overkilmmoney=?,creater=?,amenddate=? where cartypeid=?");
 
     //query.prepare("UPDATE carmodel SET carmodel=? and fuelid=? and rentmoney=? and dayrentmoney=? and avgkilm=? and overkilmmoney=? and creater=?  where cartypeid=?");
-    query.addBindValue(uuu);
-    query.addBindValue(uuu2);
-    query.addBindValue(uuu3);
-    query.addBindValue(uuu4);
-    query.addBindValue(uuu5);
-    query.addBindValue(uuu6);
-    query.addBindValue(uuu7);
-    query.addBindValue(uuu9);
-    query.addBindValue(uuu8);
+    query.addBindValue(QString(ui->lineEdit->text()));
+    query.addBindValue(QString(ui->lineEdit_2->text()));
+    query.addBindValue(ui->lineEdit_3->text().toInt());
+    query.addBindValue(ui->lineEdit_4->text().toInt());
+    query.addBindValue(ui->lineEdit_5->text().toInt());
+    query.addBindValue(ui->lineEdit_6->text().toInt());
+    query.addBindValue(creator);
+    query.addBindValue(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
+    query.addBindValue(QString(ui->label->text()));
     // model2->setTable("carmodel");
-    ui->label_3->setText(uuu7);
-    ui->label_4->setText(uuu9);
-    //1model2->select();
+    ui->label_3->setText(creator);
+    ui->label_4->setText(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
+
     query.exec();
     model2->select();
    QString hehe=creator+"修改信息了";
@@ -241,49 +211,90 @@ void admin::on_pushButton_2_clicked()
         QNetworkReply* reply=manager->get(request);
     QMessageBox::information(this,tr("提示"),tr("修改成功！      \n\n     "));
 }
+void admin::showinfo(int row){
+     QSqlQuery query;
+     query.exec(QString("select * from carmodel where cartypeid='%1'").arg(row));
+     while(query.next())
+     {
+         ui->label->setText(query.value(0).toString());   //label存储点击哪一辆车
+        // ui->label->hide();
+         ui->lineEdit->setText(query.value(1).toString());
+         ui->lineEdit_2->setText(query.value(2).toString());
+         ui->lineEdit_3->setText(query.value(3).toString());
+         ui->lineEdit_4->setText(query.value(4).toString());
+         ui->lineEdit_5->setText(query.value(5).toString());
+         ui->lineEdit_6->setText(query.value(6).toString());
+         ui->label_3->setText(query.value(8).toString());
+         ui->label_4->setText(query.value(9).toString());
+         QPixmap photo;
+         photo.loadFromData(query.value(7).toByteArray(), "jpg"); //从数据库中读出图片为二进制数据，图片格式为png，然后显示到QLabel里
 
+         if(photo.isNull())
+         {
+             QPixmap pixmap;
+             pixmap=QPixmap(":/1.png");
+
+
+             //m_pLabel->setPixmap(pixmap);
+             //QPixmap *pixmap=new QPixmap(:/1.png);
+             ui->label_2->setPixmap(pixmap);
+              qDebug() <<"6665";
+             pixmap.scaled(ui->label_2->size());//图像适应label大小
+
+         }
+         else
+         {
+
+             ui->label_2->setPixmap(photo);
+             qDebug() <<"555";
+         }
+     }
+}
 void admin::on_pushButton_3_clicked()
 {
-    int rowNum = model2->rowCount();
-    //int id = 10;
+    QSqlQuery query;
+    query.exec("insert into carmodel(carmodel) values('请编辑')");
+    model2->select();
+    //int rowNum = model2->rowCount();
+    qDebug()<<"第几行啊";
+    /* QString info="请编辑";
+        // 添加一行
+    model2->insertRow(rowNum);
+    //model2->setData(model2->index(rowNum, 1), info);
+        //ui->tableView_2->setFocujajj s();
+
+   ui->tableView_2->selectRow(model2->rowCount());
+    model2->select();
+    showinfo(model2->rowCount());*/
+    /*int rowNum = model2->rowCount();
     QString info="请编辑";
     // 添加一行
     model2->insertRow(rowNum);
     model2->setData(model2->index(rowNum, 1), info);
-    //ui->tableView_2->setFocus();
-    ui->tableView_2->selectRow(model2->rowCount());
-    //ui->tableView_2->setCurrentCell(model2->rowCount(), QItemSelectionModel::Select);
-    //ui->tableView_2->setCurrentIndex(model2->index(rowNum, 1));
-    //ui->tableView_2->setCurrentRow (model2->rowCount()+1;
-  //  QItemSelectionModel::SelectionFlags flags = QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows;
-   // QModelIndex index = ui->tableView_2->model()->index(model2->rowCount(),1);
-
-
-
-   //ui->tableView_2->selectionModel()->select(index, flags);
-    // 可以直接提交
-    //model->submitAll();
+    model2->select();
+    qDebug()<<rowNum<<"fengexian"<<ui->tableView_2->model()->rowCount();
+    showinfo(ui->tableView_2->model()->rowCount()+3);
+    //model2->select();
+    */
 }
 
-
-
-void admin::on_pushButton_4_clicked()
+void admin::on_pushButton_5_clicked()
 {
-    // 开始事务操作
-    model2->database().transaction();
-    if (model2->submitAll()) {
+    int curRow = ui->tableView_2->currentIndex().row();
+    int h=model2->index(curRow,0).data().toInt();
+    if(h!=0)
+    {
+    QSqlQuery query;//model2->index(curRow,0).data().toInt()
 
-        if(model2->database().commit()) // 提交
-        {
-             model2->select();
-            QMessageBox::information(this, tr("tableModel"),
-                                     tr("数据修改成功！"));
+
+    qDebug()<<model2->index(curRow,0).data().toString()<<"fdvdfsdfsd"<<h;
+    query.exec(QString("delete from carmodel where cartypeid='%1'").arg(h)) ;//"delete from carmodel where carmodelid=")
+    QMessageBox::information(this,tr("提示"),tr("修改成功！      \n\n     "));
+    model2->select();
+    showinfo(model2->index(1,0).data().toInt());
             }
-         //model2->select();
-    } else {
-        model2->database().rollback(); // 回滚
-        QMessageBox::warning(this, tr("tableModel"),
-                             tr("database error: %1").arg(model2->lastError().text()),
-                             QMessageBox::Ok);
+    else
+    {
+        QMessageBox::information(this,tr("提示"),tr("请选择要删除的车型！      \n\n     "));
     }
 }

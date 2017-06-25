@@ -37,3 +37,6 @@ FORMS    += mainwindow.ui \
     admin.ui \
     finance.ui \
     manager.ui
+
+RESOURCES += \
+    image.qrc
