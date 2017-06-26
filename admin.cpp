@@ -26,28 +26,11 @@ admin::admin(QWidget *parent) :
      //connect(dataTabView_, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(slotRowDoubleClicked(const QModelIndex &)));
     qDebug()<<"currentTime0--"<<QTime::currentTime().toString(Qt::ISODate);
 
-/*  model = new QSqlTableModel(this);
-//  model->setQuery("select * from shopinfo");
-    model->setTable("carmodel");
-    model->select();
-    // 设置编辑策略
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    ui->tableView->setModel(model);
-//  ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);  //设置表格列宽度自适应
-//  ui->tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
-//  ui->tableView->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
-    qDebug()<<"currentTime1--"<<QTime::currentTime().toString(Qt::ISODate)
-            <<QDateTime::currentDateTime().toString(Qt::ISODate)
-            <<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz");
-*/
     model2 = new QSqlTableModel(this);
-//  model3->setFilter(QString("carid = '1'"));
     model2->setTable("carmodel");
-
     model2->select();
     QApplication::processEvents();
     model2->setEditStrategy(QSqlTableModel::OnManualSubmit);
-
     ui->tableView_2->setModel(model2);
     ui->tableView_2->hideColumn(0);
     ui->tableView_2->hideColumn(2);
@@ -58,6 +41,7 @@ admin::admin(QWidget *parent) :
     ui->tableView_2->hideColumn(7);
     ui->tableView_2->hideColumn(8);
     ui->tableView_2->hideColumn(9);
+    ui->tableView_2->hideColumn(10);
     ui->tableView_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);  //设置表格列宽度自适应
     //ui->tableView_2->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
     ui->tableView_2->verticalHeader()->setVisible(false);
@@ -67,22 +51,32 @@ admin::admin(QWidget *parent) :
     ui->tableView_2->setAlternatingRowColors(true); //使用交替行颜色
     qDebug()<<"currentTime2--"<<QTime::currentTime().toString(Qt::ISODate);
 
-   /* model3 = new QSqlTableModel(this);
+    connect(ui->tableView, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show2()));
+    model3 = new QSqlTableModel(this);
     model3->setTable("carinfo");
     //model3->setFilter(QString("carid = '1'"));
     model3->select();
     model3->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    ui->tableView_3->setModel(model3);
-    ui->tableView_3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);  //设置表格列宽度自适应
-    ui->tableView_3->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
-    ui->tableView_3->resizeColumnsToContents();
-    ui->tableView_3->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
-    ui->tableView_3->setAlternatingRowColors(true); //使用交替行颜色
-    qDebug()<<"currentTime3--"<<QTime::currentTime().toString(Qt::ISODate)
-            <<QDateTime::currentDateTime().toString(Qt::ISODate)
-            <<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz");
+    ui->tableView->setModel(model3);
+    ui->tableView->hideColumn(0);
+    ui->tableView->hideColumn(1);
+    ui->tableView->hideColumn(2);
+    ui->tableView->hideColumn(4);
+    ui->tableView->hideColumn(5);
+    ui->tableView->hideColumn(6);
+    ui->tableView->hideColumn(7);
+    ui->tableView->hideColumn(8);
+    ui->tableView->hideColumn(9);
+    ui->tableView->hideColumn(10);
+    ui->tableView->hideColumn(11);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);  //设置表格列宽度自适应
+    ui->tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
+    ui->tableView->resizeColumnsToContents();
+    ui->tableView->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
+    ui->tableView->setAlternatingRowColors(true); //使用交替行颜色
+    qDebug()<<"currentTime3--"<<QTime::currentTime().toString(Qt::ISODate);
 
-    model4 = new QSqlTableModel(this);
+    /* model4 = new QSqlTableModel(this);
     model4->setTable("rentinfo");
     model4->select();
     model4->setEditStrategy(QSqlTableModel::OnManualSubmit);
@@ -97,21 +91,19 @@ admin::admin(QWidget *parent) :
             <<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz");
     //ui->tableView_4->setUpdatesEnabled(false);
     //ui->tableView_3->setUpdatesEnabled(false);
-   // ui->tableView_2->setUpdatesEnabled(false);
+    // ui->tableView_2->setUpdatesEnabled(false);
     //ui->tableView->setUpdatesEnabled(false);
 */
-
-   // QSqlQuery query6;
+    // QSqlQuery query6;
     qDebug()<<model2->index(0,0).data().toString();
-  showinfo(model2->index(15,0).data().toInt());
-  ui->lineEdit->setStyleSheet("background-color:transparent");
-   ui->lineEdit_2->setStyleSheet("background-color:transparent");
+    showinfo(model2->index(15,0).data().toInt());
+    ui->lineEdit->setStyleSheet("background-color:transparent");
+    ui->lineEdit_2->setStyleSheet("background-color:transparent");
     ui->lineEdit_3->setStyleSheet("background-color:transparent");
-     ui->lineEdit_4->setStyleSheet("background-color:transparent");
-      ui->lineEdit_5->setStyleSheet("background-color:transparent");
-       ui->lineEdit_6->setStyleSheet("background-color:transparent");
+    ui->lineEdit_4->setStyleSheet("background-color:transparent");
+    ui->lineEdit_5->setStyleSheet("background-color:transparent");
+    ui->lineEdit_6->setStyleSheet("background-color:transparent");
     //query6.exec(QString("select * from carmodel where cartypeid='%1'").arg(model2->index(0,0).data().toString()));
-
 }
 
 admin::~admin()
@@ -122,19 +114,24 @@ void admin::show1()
 {
     int curRow = ui->tableView_2->currentIndex().row();
     QSqlQuery query;
-     qDebug()<<model2->index(curRow,0).data().toString();
-     showinfo(model2->index(curRow,0).data().toInt());
-
-
+    qDebug()<<model2->index(curRow,0).data().toString();
+    showinfo(model2->index(curRow,0).data().toInt());
+}
+void admin::show2()
+{
+    int curRow = ui->tableView->currentIndex().row();
+    QSqlQuery query;
+    qDebug()<<model3->index(curRow,0).data().toString()<<"这里是show2";
+    showinfo2(model3->index(curRow,0).data().toInt());
 }
 void admin::on_pushButton_clicked()
 {
     int curRow = ui->tableView_2->currentIndex().row();
     qDebug()<<curRow<<model2->index(curRow,0).data().toString();
 
-  //  model3->index(rowidx,1).data().toString();
+    //  model3->index(rowidx,1).data().toString();
     QByteArray data;
-        QString filename = QFileDialog::getOpenFileName(
+    QString filename = QFileDialog::getOpenFileName(
                     this,
                     "Open Document",
                     QDir::currentPath(),
@@ -151,7 +148,7 @@ void admin::on_pushButton_clicked()
             file->close();
         }
         QSqlQuery query;
-         qDebug()<<model2->index(curRow,0).data().toString();
+        qDebug()<<model2->index(curRow,0).data().toString();
         query.prepare("UPDATE carmodel SET carphoto=? where cartypeid=?");
         query.addBindValue(var_5);
         query.addBindValue(model2->index(curRow,0).data().toString());
@@ -165,20 +162,7 @@ void admin::on_pushButton_clicked()
 void admin::on_pushButton_2_clicked()
 {
     QSqlQuery query;
-   /* QString uuu=ui->lineEdit->text();
-    QString uuu2=ui->lineEdit_2->text();
-    int uuu3=ui->lineEdit_3->text().toInt();
-    int uuu4=ui->lineEdit_4->text().toInt();
-    int uuu5=ui->lineEdit_5->text().toInt();
-    int uuu6=ui->lineEdit_6->text().toInt();
-    QString uuu7=creator;
-    QString uuu8=ui->label->text();
-    QString uuu9=QDateTime::currentDateTime().toString("yyyy-MM-dd");
-   */
-    //query.prepare("UPDATE carmodel SET carmodel=? and fuelid=? where cartypeid=?");
-    query.prepare("UPDATE carmodel SET carmodel=?,fuelid=?,rentmoney=?,dayrentmoney=?,avgkilm=?,overkilmmoney=?,creater=?,amenddate=? where cartypeid=?");
-
-    //query.prepare("UPDATE carmodel SET carmodel=? and fuelid=? and rentmoney=? and dayrentmoney=? and avgkilm=? and overkilmmoney=? and creater=?  where cartypeid=?");
+    query.prepare("UPDATE carmodel SET carmodel=?,fuelid=?,rentmoney=?,dayrentmoney=?,avgkilm=?,overkilmmoney=?,creater=?,amenddate=?,overdatemoney=? where cartypeid=?");
     query.addBindValue(QString(ui->lineEdit->text()));
     query.addBindValue(QString(ui->lineEdit_2->text()));
     query.addBindValue(ui->lineEdit_3->text().toInt());
@@ -187,19 +171,18 @@ void admin::on_pushButton_2_clicked()
     query.addBindValue(ui->lineEdit_6->text().toInt());
     query.addBindValue(creator);
     query.addBindValue(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
+    query.addBindValue(ui->lineEdit_7->text().toInt());
     query.addBindValue(QString(ui->label->text()));
-    // model2->setTable("carmodel");
     ui->label_3->setText(creator);
     ui->label_4->setText(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
-
     query.exec();
     model2->select();
-   QString hehe=creator+"修改信息了";
+    QString hehe=creator+"修改信息了";
     // 基本 URL
     QString baseUrl = "https://sc.ftqq.com/SCU8983Tc368ce0619fe334835f91607b35602d659391d20345f6.send?text=";
     // 设置发送的数据
     QByteArray bytes;
-   // bytes.append("type=content&");
+    // bytes.append("type=content&");
     bytes.append(QString("%1").arg(hehe));  // Qt 作为变量输入
     // 组合 URL
     baseUrl += bytes;
@@ -217,13 +200,14 @@ void admin::showinfo(int row){
      while(query.next())
      {
          ui->label->setText(query.value(0).toString());   //label存储点击哪一辆车
-        // ui->label->hide();
+         // ui->label->hide();
          ui->lineEdit->setText(query.value(1).toString());
          ui->lineEdit_2->setText(query.value(2).toString());
          ui->lineEdit_3->setText(query.value(3).toString());
          ui->lineEdit_4->setText(query.value(4).toString());
          ui->lineEdit_5->setText(query.value(5).toString());
          ui->lineEdit_6->setText(query.value(6).toString());
+         ui->lineEdit_7->setText(query.value(10).toString());
          ui->label_3->setText(query.value(8).toString());
          ui->label_4->setText(query.value(9).toString());
          QPixmap photo;
@@ -233,12 +217,10 @@ void admin::showinfo(int row){
          {
              QPixmap pixmap;
              pixmap=QPixmap(":/1.png");
-
-
              //m_pLabel->setPixmap(pixmap);
              //QPixmap *pixmap=new QPixmap(:/1.png);
              ui->label_2->setPixmap(pixmap);
-              qDebug() <<"6665";
+             qDebug() <<"6665";
              pixmap.scaled(ui->label_2->size());//图像适应label大小
 
          }
@@ -250,32 +232,75 @@ void admin::showinfo(int row){
          }
      }
 }
+
+void admin::showinfo2(int row){
+     QSqlQuery query;
+     qDebug() <<row<<"111这里显示shishowinfo2";
+     query.exec(QString("select * from carinfo where carid='%1'").arg(row));
+     qDebug() <<row<<"2222这里显示shishowinfo2";
+     while(query.next())
+
+     {
+         ui->label_14->setText(query.value(0).toString());   //label存储点击哪一辆车
+         // ui->label->hide();
+         ui->lineEdit_8->setText(query.value(1).toString());
+         //ui->lineEdit_2->setText(query.value(2).toString());
+         ui->lineEdit_9->setText(query.value(3).toString());
+         ui->lineEdit_10->setText(query.value(4).toString());
+         ui->lineEdit_11->setText(query.value(5).toString());
+         ui->lineEdit_12->setText(query.value(6).toString());
+         ui->lineEdit_13->setText(query.value(7).toString());
+         ui->lineEdit_14->setText(query.value(8).toString());
+         ui->lineEdit_15->setText(query.value(9).toString());
+         // ui->lineEdit_16->setText(query.value(10).toString());
+         ui->label_15->setText(query.value(10).toString());
+         ui->label_15->setText(query.value(11).toString());
+         QPixmap photo2;
+         int g=query.value(1).toInt();
+         qDebug() <<g<<"哈哈哈哈，这里";
+         query.exec();
+         QSqlQuery query2;
+         query2.exec(QString("select carphoto from carmodel where cartypeid='%1'").arg(g));
+         while(query2.next())
+         {
+         photo2.loadFromData(query2.value(0).toByteArray(), "jpg");
+         if(photo2.isNull())
+         {
+             QPixmap pixmap2;
+             pixmap2=QPixmap(":/1.png");
+             //m_pLabel->setPixmap(pixmap);
+             //QPixmap *pixmap=new QPixmap(:/1.png);
+             ui->label_13->setPixmap(pixmap2);
+             qDebug() <<"68885";
+             pixmap2.scaled(ui->label_13->size());//图像适应label大小
+
+         }
+         else
+         {
+
+             ui->label_13->setPixmap(photo2);
+             qDebug() <<"车型图片";
+         }
+         }
+     }
+     QSqlQuery query3;
+     qDebug() <<row<<"111这里显示shishowinfo2";
+     query3.exec(QString("select * from insuranceinfo where insuranceid='%1'").arg(row));
+     while(query3.next())
+     {
+         ui->lineEdit_16->setText(query3.value(1).toString());
+         ui->lineEdit_17->setText(query3.value(2).toString());
+         ui->lineEdit_18->setText(query3.value(3).toString());
+         ui->lineEdit_19->setText(query3.value(4).toString());
+         ui->lineEdit_20->setText(query3.value(5).toString());
+     }
+}
+
 void admin::on_pushButton_3_clicked()
 {
     QSqlQuery query;
     query.exec("insert into carmodel(carmodel) values('请编辑')");
     model2->select();
-    //int rowNum = model2->rowCount();
-    qDebug()<<"第几行啊";
-    /* QString info="请编辑";
-        // 添加一行
-    model2->insertRow(rowNum);
-    //model2->setData(model2->index(rowNum, 1), info);
-        //ui->tableView_2->setFocujajj s();
-
-   ui->tableView_2->selectRow(model2->rowCount());
-    model2->select();
-    showinfo(model2->rowCount());*/
-    /*int rowNum = model2->rowCount();
-    QString info="请编辑";
-    // 添加一行
-    model2->insertRow(rowNum);
-    model2->setData(model2->index(rowNum, 1), info);
-    model2->select();
-    qDebug()<<rowNum<<"fengexian"<<ui->tableView_2->model()->rowCount();
-    showinfo(ui->tableView_2->model()->rowCount()+3);
-    //model2->select();
-    */
 }
 
 void admin::on_pushButton_5_clicked()
@@ -285,16 +310,67 @@ void admin::on_pushButton_5_clicked()
     if(h!=0)
     {
     QSqlQuery query;//model2->index(curRow,0).data().toInt()
-
-
     qDebug()<<model2->index(curRow,0).data().toString()<<"fdvdfsdfsd"<<h;
     query.exec(QString("delete from carmodel where cartypeid='%1'").arg(h)) ;//"delete from carmodel where carmodelid=")
     QMessageBox::information(this,tr("提示"),tr("修改成功！      \n\n     "));
     model2->select();
     showinfo(model2->index(1,0).data().toInt());
-            }
+    }
     else
     {
         QMessageBox::information(this,tr("提示"),tr("请选择要删除的车型！      \n\n     "));
     }
+}
+
+void admin::on_pushButton_4_clicked()
+{
+    QSqlQuery query;
+    query.prepare("UPDATE carinfo SET cartypeid=?,carnumber=?,carcolor=?,carage=?,carbodyid=?,carbuyday=?,carstatus=?,carbuyfrom=?,creater=?,amenddate=? where carid=?");
+    query.addBindValue(ui->lineEdit_8->text().toInt());
+    query.addBindValue(QString(ui->lineEdit_9->text()));
+    query.addBindValue(QString(ui->lineEdit_10->text()));
+    query.addBindValue(ui->lineEdit_11->text().toInt());
+    query.addBindValue(QString(ui->lineEdit_12->text()));
+    query.addBindValue(QString(ui->lineEdit_13->text()));
+    query.addBindValue(QString(ui->lineEdit_14->text()));
+    query.addBindValue(QString(ui->lineEdit_15->text()));
+    query.addBindValue(creator);
+    query.addBindValue(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
+    query.addBindValue(QString(ui->label_14->text()));
+    ui->label_3->setText(creator);
+    ui->label_4->setText(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
+    query.exec();
+    qDebug() <<"修改车郎信心";
+
+    QSqlQuery query2;
+    query2.prepare("UPDATE insuranceinfo SET insurancenum=?,insurancecompany=?,insurancebegain=?,insuranceend=?,insurancetype=?,creater=?,amenddate=? where insuranceid=?");
+    query2.addBindValue(QString(ui->lineEdit_16->text()));
+    query2.addBindValue(QString(ui->lineEdit_17->text()));
+    query2.addBindValue(QString(ui->lineEdit_18->text()));
+    query2.addBindValue(QString(ui->lineEdit_19->text()));
+    query2.addBindValue(QString(ui->lineEdit_20->text()));
+    query2.addBindValue(creator);
+    query2.addBindValue(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
+    query2.addBindValue(QString(ui->label_14->text()).toInt());
+    query2.exec();
+    qDebug() <<"修改车郎信心2222"<<QString(ui->label_14->text()).toInt();
+    model3->select();
+    showinfo2(QString(ui->label_14->text()).toInt());
+    QString hehe=creator+"修改车辆信息啦";
+    // 基本 URL
+    QString baseUrl = "https://sc.ftqq.com/SCU8983Tc368ce0619fe334835f91607b35602d659391d20345f6.send?text=";
+    // 设置发送的数据
+    QByteArray bytes;
+   // bytes.append("type=content&");
+    bytes.append(QString("%1").arg(hehe));  // Qt 作为变量输入
+    // 组合 URL
+    baseUrl += bytes;
+    //QUrl url(baseUrl);
+    qDebug() <<baseUrl;
+    QNetworkAccessManager* manager=new QNetworkAccessManager(this);
+        QNetworkRequest request;
+        request.setUrl(baseUrl);
+        QNetworkReply* reply=manager->get(request);
+    QMessageBox::information(this,tr("提示"),tr("修改成功！      \n\n     "));
+
 }

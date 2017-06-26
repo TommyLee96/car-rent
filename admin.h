@@ -18,6 +18,7 @@ public:
 private slots:
     void on_pushButton_clicked();
     void show1();
+    void show2();
 
 
     void on_pushButton_2_clicked();
@@ -26,11 +27,13 @@ private slots:
 
 
     void showinfo(int row);
-
+    void showinfo2(int row);
 
 
 
     void on_pushButton_5_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::admin *ui;
