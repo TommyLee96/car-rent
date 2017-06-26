@@ -28,9 +28,6 @@ int main(int argc, char *argv[])
         else if(h.flag==1)    //管理登录
         {
            admin admin1;
-           qDebug()<<"currentTime88--"<<QTime::currentTime().toString(Qt::ISODate);
-                   //<<QDateTime::currentDateTime().toString(Qt::ISODate)
-                  // <<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss:zzz");
            admin1.show();
            return a.exec();
         }
