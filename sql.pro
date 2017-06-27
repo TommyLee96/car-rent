@@ -17,26 +17,28 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     login.cpp \
     admin.cpp \
     finance.cpp \
     manager.cpp \
-    global.cpp
+    global.cpp \
+    inputlicense.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     connecttion.h \
     login.h \
     admin.h \
     finance.h \
     global.h \
-    manager.h
+    manager.h \
+    inputlicense.h
 
-FORMS    += mainwindow.ui \
+FORMS    += \
     login.ui \
     admin.ui \
     finance.ui \
-    manager.ui
+    manager.ui \
+    inputlicense.ui
 
 RESOURCES += \
     image.qrc

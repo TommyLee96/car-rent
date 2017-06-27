@@ -31,7 +31,7 @@ private slots:
 
 private:
     Ui::admin *ui;
-   // Ui::admin *completer;
+    //Ui::admin *completer;
     QSqlTableModel *model;
     QSqlTableModel *model2;
     QSqlTableModel *model3;

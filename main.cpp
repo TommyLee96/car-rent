@@ -1,4 +1,3 @@
-#include "mainwindow.h"
 #include <QApplication>
 #include <QDebug>
 #include<QTime>
@@ -14,8 +13,6 @@ int main(int argc, char *argv[])
     {
         return 1;
     }
-    //MainWindow w;
-
     login h;
     if(h.exec()==QDialog::Accepted)
     {

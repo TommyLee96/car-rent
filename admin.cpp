@@ -85,7 +85,7 @@ admin::~admin()
 void admin::show1()
 {
     int curRow = ui->tableView_2->currentIndex().row();
-    QSqlQuery query;
+    //QSqlQuery query;
     showinfo(model2->index(curRow,0).data().toInt());
 }
 void admin::show2()
@@ -227,11 +227,9 @@ void admin::showinfo2(int row){
              //QPixmap *pixmap=new QPixmap(:/1.png);
              ui->label_13->setPixmap(pixmap2);
              pixmap2.scaled(ui->label_13->size());//图像适应label大小
-
          }
          else
          {
-
              ui->label_13->setPixmap(photo2);
          }
          }
@@ -295,7 +293,6 @@ void admin::on_pushButton_4_clicked()
     ui->label_3->setText(creator);
     ui->label_4->setText(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
     query.exec();
-
     QSqlQuery query2;
     query2.prepare("UPDATE insuranceinfo SET insurancenum=?,insurancecompany=?,insurancebegain=?,insuranceend=?,insurancetype=?,creater=?,amenddate=? where insuranceid=?");
     query2.addBindValue(QString(ui->lineEdit_16->text()));
@@ -333,24 +330,19 @@ void admin::on_pushButton_6_clicked()
     query.exec("insert into carinfo(carnumber) values('请编辑车牌号')");
     model3->select();
     int curRow = ui->tableView->model()->rowCount();
-
-
-   // int curRow = model3->rowCount();
+    // int curRow = model3->rowCount();
     QSqlQuery query2;
     query2.prepare("insert into insuranceinfo(insuranceid) values(?)");
     query2.addBindValue(model3->index(curRow-1,0).data().toInt());
     query2.exec();
     QSqlQuery query3;
-
     query3.prepare("UPDATE carinfo SET insuranceid=? where carid=?");
     query3.addBindValue(model3->index(curRow-1,0).data().toInt());
     query3.addBindValue(model3->index(curRow-1,0).data().toInt());
     query3.exec();
     model3->select();
 }
-
-
-   /* QStringList strings;
+    /* QStringList strings;
 
 
         QSqlQuery query5("SELECT carmodel  FROM cartypeinfo");
@@ -369,7 +361,6 @@ void admin::on_pushButton_7_clicked()
     int h=model3->index(curRow,0).data().toInt();
     if(h!=0)
     {
-
     QSqlQuery query2;//model2->index(curRow,0).data().toInt()
     query2.exec(QString("delete from insuranceinfo where insuranceid='%1'").arg(h)) ;//"delete from carmodel where carmodelid=")
     QSqlQuery query;//model2->index(curRow,0).data().toInt()

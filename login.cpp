@@ -45,18 +45,16 @@ void login::on_pushButton_clicked()
       int flag_user=1;
       QSqlQuery query2;
       query2.exec(QString("select clientid,password,type from clientinfo where clientid='%1' and type='%2'").arg(username).arg(flag));
-
       //query2.exec("select clientid,password,type from clientinfo");
       while(query2.next())
       {
-
-         if(query2.value(0).toString() == username && query2.value(2).toInt() == flag)
+          if(query2.value(0).toString() == username && query2.value(2).toInt() == flag)
           {
              flag_user=0;
              if(query2.value(1).toString() == password)
              {
                   //userinfo=username;
-                 qDebug()<<"caiwu  "<<flag<<"";
+                  qDebug()<<"caiwu  "<<flag<<"";
                   accept(); //user++;
                   this->close();
              }
@@ -78,11 +76,6 @@ void login::on_pushButton_clicked()
           ui->user->setFocus();
       }
 
-
-      //accept();
-      //this->close();
-      //finance finance1;
-      //finance1.exec();
     }
     else if (ui->radio2->isChecked())  //管理1
     {

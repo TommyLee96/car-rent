@@ -15,11 +15,15 @@ class manager : public QDialog
 public:
     explicit manager(QWidget *parent = 0);
     ~manager();
+    //QSqlQueryModel *model;
 
 private slots:
     void on_pushButton_clicked();
     void show3();
     void showinfo3(int row);
+    void on_pushButton_2_clicked();
+    void getcar();
+
 private:
     Ui::manager *ui;
     QSqlQueryModel *model;

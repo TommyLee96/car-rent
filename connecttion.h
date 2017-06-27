@@ -29,7 +29,6 @@ static bool createConnection()
         //return;
     }
     //检查此车辆是否合法
-
     return connected=true;
     return true;
 }
