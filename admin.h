@@ -3,6 +3,7 @@
 
 #include <QDialog>
 class QSqlTableModel;
+class QSqlQueryModel;
 namespace Ui {
 class admin;
 }

@@ -339,11 +339,13 @@ void admin::on_pushButton_6_clicked()
     QSqlQuery query2;
     query2.prepare("insert into insuranceinfo(insuranceid) values(?)");
     query2.addBindValue(model3->index(curRow-1,0).data().toInt());
+    query2.exec();
     QSqlQuery query3;
 
     query3.prepare("UPDATE carinfo SET insuranceid=? where carid=?");
     query3.addBindValue(model3->index(curRow-1,0).data().toInt());
     query3.addBindValue(model3->index(curRow-1,0).data().toInt());
+    query3.exec();
     model3->select();
 }
 
