@@ -9,11 +9,13 @@
 #include<QSqlQuery >
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
+#include<QStandardItemModel>
 manager::manager(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::manager)
 {
     ui->setupUi(this);
+
     ui->dateEdit->setCalendarPopup(true);
     ui->dateEdit->setDate(QDate::currentDate());
     ui->dateEdit_2->setDate(QDate::currentDate());
@@ -25,10 +27,11 @@ manager::manager(QWidget *parent) :
     model = new QSqlQueryModel(this);
     model->setHeaderData(0, Qt::Horizontal, tr("车牌"));
     ui->tableView->setModel(model);
-    ui->tableView->hideColumn(0);
+    //ui->tableView->hideColumn(0);
     ui->tableView->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
     ui->tableView->setAlternatingRowColors(true); //使用交替行颜色
-    ui->tableView->horizontalHeader()->setVisible(false);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);  //设置表格列宽度自适应
+    //ui->tableView->horizontalHeader()->setVisible(false);
     ui->tableView->verticalHeader()->setVisible(false);
     qDebug()<<ui->dateEdit->date().daysTo(ui->dateEdit_2->date())<<"oooo"<<ui->dateEdit_2->text()<<ui->dateEdit_2->text().mid(0,4).toInt()<<ui->dateEdit_2->text().mid(5,2).toInt()<<ui->dateEdit_2->text().mid(8,2).toInt();
     //ui->spinBox->setMinimum(500);
@@ -45,6 +48,14 @@ manager::manager(QWidget *parent) :
      //ui->tableView_2->setSelectionBehavior(SelectRows);
      ui->tableView_2->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
      ui->tableView_2->setAlternatingRowColors(true); //使用交替行颜色
+     ui->tableView_2->hideColumn(0);
+     ui->tableView_2->hideColumn(3);
+     ui->tableView_2->hideColumn(4);
+     ui->tableView_2->hideColumn(7);
+     ui->tableView_2->hideColumn(9);
+     ui->tableView_2->hideColumn(10);
+     ui->tableView_2->hideColumn(11);
+     ui->tableView_2->hideColumn(12);
      ui->dateEdit_3->setDate(QDate::currentDate());
      ui->dateEdit_3->setCalendarPopup(true);
      ui->dateEdit_3->setDisplayFormat("yyyy-MM-dd");
@@ -87,19 +98,27 @@ void manager::showinfo3(int row)
         query9.exec(QString("select insurancenum,insurancecompany from insuranceinfo where insuranceid='%1'").arg(query.value(0).toInt()));
         while(query9.next())
         {
-            ui->label->setText(QString(query9.value(1).toString()+query9.value(0).toString()));   //车型id
+            ui->label->setText(QString(query9.value(1).toString()+query9.value(0).toString()));   //保险信息
         }
 
         QSqlQuery query8;
-        query8.exec(QString("select carmodel from carmodel where cartypeid='%1'").arg(query.value(1).toInt()));
+        query8.exec(QString("select carmodel,fuelid,rentmoney,dayrentmoney from carmodel where cartypeid='%1'").arg(query.value(1).toInt()));
         while(query8.next())
         {
             ui->label_2->setText(query8.value(0).toString());   //车型id
+            ui->label_25->setText((query8.value(2)).toString());
+          int g=(ui->dateEdit->date().daysTo(ui->dateEdit_2->date())*1.5*(query8.value(3).toInt()));
+
+
+          ui->label_26->setText(QString::number((g%100)*100));
+          ui->label_28->setText(QString::number((g%100)*100+query8.value(2).toInt()));
+          premon=(g%100)*100+query8.value(2).toInt();
+          qDebug()<<"钱多少"<<g;
         }
        // ui->label_2->setText(query.value(1).toString()); //车牌
         ui->label_3->setText(query.value(3).toString());//保险id
         ui->label_4->setText(query.value(4).toString()); //车龄
-        ui->label_5->setText(query.value(5).toString());//燃油编号
+        ui->label_5->setText(query.value(5).toString());//车身编号
         ui->label_6->setText(query.value(6).toString()); //购买日期
         ui->label_7->setText(query.value(7).toString());  //颜色
         //ui->label_8->setText(query.value(8).toString()); //zhuang
@@ -182,13 +201,6 @@ void manager::on_pushButton_2_clicked()
         {
             flag=1;
             qDebug()<<query.value(0).toInt()<<"HEHEHHEHHEEH";//如果查到那人的驾驶证号，
-             QString premoney1=ui->lineEdit_2->text();
-            if(premoney1.length()==0)
-            {
-                QMessageBox::information(this,tr("提示"),tr("请填写用户缴纳的押金！      \n\n     "));
-            }
-            else
-            {
             /*下面是租车操作，同inputlicense类
              *query.value(0).toInt()  licenseid
              *model->index(curRow,0).data().toString()  carid
@@ -202,23 +214,23 @@ void manager::on_pushButton_2_clicked()
                 qDebug()<< time.toString("yyyyMMdd"+creator+license); //设置显示格式<<"看看看";//如果查到那人的驾驶证号，
                 QSqlQuery query7;
                 query7.prepare("INSERT INTO rentinfo(rentnum,shopid,licenseid,carid,rentbegin,preend,premoney,rentstatus,creater,amenddate) values(:rentnum,:shopid,:licenseid,:carid,:rentbegin,:preend,:premoney,:rentstatus,:creater,:amenddate)");
-                query7.bindValue(":rentnum",time.toString("yyyyMMdd"+creator+license));
+                query7.bindValue(":rentnum",time.toString("yyyyMMddhhmmss"+creator+license));
                 query7.bindValue(":shopid",shopid);
                 query7.bindValue(":licenseid",query.value(0).toInt());
                 query7.bindValue(":carid",model->index(curRow,0).data().toInt());
                 query7.bindValue(":rentbegin",ui->dateEdit->text());
                 query7.bindValue(":preend",ui->dateEdit_2->text());
-                query7.bindValue(":premoney",premoney1);       //preend
+                query7.bindValue(":premoney",premon);       //preend
                 query7.bindValue(":rentstatus",0);  //premoney
 
                 query7.bindValue(":creater",creator);
                 query7.bindValue(":amenddate",QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
                 query7.exec();
                 qDebug()<<"bigbigibgi"<<shopid<<query.value(0).toInt()<<model->index(curRow,0).data().toInt();
-                qDebug()<<ui->dateEdit->date()<<ui->dateEdit_2->text()<<premoney1;//如果查到那人的驾驶证号，
+                qDebug()<<ui->dateEdit->date()<<ui->dateEdit_2->text();//如果查到那人的驾驶证号，
                 model->setQuery(QString("select carid,carnumber from carinfo where carid not in(select carid from rentinfo where ( rentbegin<='%1'and preend>='%2') or ('%3'>preend and preend>='%4'))").arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit->text()));
 
-            }
+
         }
         if(flag==0)   //flag=0时说明没有该驾驶证
         {
@@ -310,6 +322,9 @@ void manager::on_pushButton_5_clicked()
      * 将订单状态rentstatus改为1
      * 统计所有费用realmoney
      * 更新realend
-     */
-
+     *判断是否点击了某行
+     * 获取rentid,将该车状态改为0
+     * 把realend改为今天
+     * 计算钱  减去押金
+*/
 }

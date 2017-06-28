@@ -23,11 +23,11 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
-     <string>Tab 1</string>
+     <string>车型信息</string>
     </attribute>
     <widget class="QTableView" name="tableView_2">
      <property name="geometry">
@@ -55,15 +55,18 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>210</y>
-       <width>74</width>
-       <height>191</height>
+       <x>400</x>
+       <y>90</y>
+       <width>101</width>
+       <height>212</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QLabel" name="label_5">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>车型</string>
         </property>
@@ -71,6 +74,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_6">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>燃油编号</string>
         </property>
@@ -78,6 +84,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_7">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>租金</string>
         </property>
@@ -85,6 +94,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_9">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>日租金</string>
         </property>
@@ -92,6 +104,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_10">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>日平均公里</string>
         </property>
@@ -99,6 +114,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_8">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>超公里费用</string>
         </property>
@@ -106,6 +124,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_12">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>最后修改时间</string>
         </property>
@@ -113,6 +134,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_11">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>最新修改人</string>
         </property>
@@ -123,47 +147,151 @@
     <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>210</y>
+       <x>510</x>
+       <y>100</y>
        <width>160</width>
-       <height>214</height>
+       <height>253</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="3" column="0">
-       <widget class="QLineEdit" name="lineEdit_3"/>
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="styleSheet">
+         <string notr="true">
+       border-style: solid; 
+       background: transparent;  
+       background-color:#FFFFFF; 
+         
+
+
+ 
+  font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  </string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="styleSheet">
+         <string notr="true">
+       border-style: solid; 
+       background: transparent;  
+       background-color:#FFFFFF; 
+         
+
+
+ 
+  font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  </string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLineEdit" name="lineEdit_2"/>
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="styleSheet">
+         <string notr="true">
+       border-style: solid; 
+       background: transparent;  
+       background-color:#FFFFFF; 
+         
+
+
+ 
+  font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  </string>
+        </property>
+       </widget>
       </item>
       <item row="6" column="0">
-       <widget class="QLineEdit" name="lineEdit_6"/>
+       <widget class="QLineEdit" name="lineEdit_6">
+        <property name="styleSheet">
+         <string notr="true">
+       border-style: solid; 
+       background: transparent;  
+       background-color:#FFFFFF; 
+         
+
+
+ 
+  font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  </string>
+        </property>
+       </widget>
       </item>
       <item row="8" column="0">
        <widget class="QLabel" name="label_3">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QLineEdit" name="lineEdit_4"/>
+       <widget class="QLineEdit" name="lineEdit_4">
+        <property name="styleSheet">
+         <string notr="true">
+       border-style: solid; 
+       background: transparent;  
+       background-color:#FFFFFF; 
+         
+
+
+ 
+  font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  </string>
+        </property>
+       </widget>
       </item>
       <item row="5" column="0">
-       <widget class="QLineEdit" name="lineEdit_5"/>
+       <widget class="QLineEdit" name="lineEdit_5">
+        <property name="styleSheet">
+         <string notr="true">
+       border-style: solid; 
+       background: transparent;  
+       background-color:#FFFFFF; 
+         
+
+
+ 
+  font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  </string>
+        </property>
+       </widget>
       </item>
       <item row="9" column="0">
        <widget class="QLabel" name="label_4">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
        </widget>
       </item>
       <item row="7" column="0">
-       <widget class="QLineEdit" name="lineEdit_7"/>
+       <widget class="QLineEdit" name="lineEdit_7">
+        <property name="styleSheet">
+         <string notr="true">
+       border-style: solid; 
+       background: transparent;  
+       background-color:#FFFFFF; 
+         
+
+
+ 
+  font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  </string>
+        </property>
+       </widget>
       </item>
      </layout>
      <zorder>lineEdit</zorder>
@@ -179,8 +307,8 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>40</y>
+       <x>0</x>
+       <y>10</y>
        <width>461</width>
        <height>301</height>
       </rect>
@@ -192,11 +320,20 @@
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>10</y>
-       <width>131</width>
-       <height>23</height>
+       <x>100</x>
+       <y>390</y>
+       <width>130</width>
+       <height>40</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
      </property>
      <property name="text">
       <string>修改当前车型图片</string>
@@ -205,40 +342,67 @@
     <widget class="QPushButton" name="pushButton_2">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>430</y>
-       <width>91</width>
-       <height>23</height>
+       <x>260</x>
+       <y>340</y>
+       <width>130</width>
+       <height>40</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
      </property>
      <property name="text">
       <string>确认修改信息</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>410</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>新增车型</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>460</x>
-       <y>400</y>
-       <width>101</width>
-       <height>23</height>
+       <x>260</x>
+       <y>390</y>
+       <width>130</width>
+       <height>40</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
      </property>
      <property name="text">
       <string>删除选中车型</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>340</y>
+       <width>130</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
+     </property>
+     <property name="text">
+      <string>新增车型</string>
      </property>
     </widget>
     <zorder>label_2</zorder>
@@ -247,13 +411,13 @@
     <zorder>verticalLayoutWidget</zorder>
     <zorder>gridLayoutWidget</zorder>
     <zorder>pushButton_2</zorder>
-    <zorder>pushButton_3</zorder>
     <zorder>pushButton_5</zorder>
     <zorder>pushButton</zorder>
+    <zorder>pushButton_3</zorder>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>Tab 2</string>
+     <string>车辆信息</string>
     </attribute>
     <widget class="QTableView" name="tableView">
      <property name="geometry">
@@ -284,12 +448,16 @@
        <x>240</x>
        <y>80</y>
        <width>160</width>
-       <height>334</height>
+       <height>360</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLineEdit" name="lineEdit_8"/>
+       <widget class="QComboBox" name="comboBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit_9"/>
@@ -326,6 +494,9 @@
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit_20"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_21"/>
       </item>
      </layout>
     </widget>
@@ -469,13 +640,20 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QLabel" name="label_30">
+        <property name="text">
+         <string>行驶公里数</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>280</x>
-       <y>420</y>
+       <x>410</x>
+       <y>350</y>
        <width>75</width>
        <height>23</height>
       </rect>

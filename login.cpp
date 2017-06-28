@@ -16,6 +16,8 @@ login::login(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->password->setEchoMode( QLineEdit::Password );
+    ui->user->setPlaceholderText("用户名");
+    ui->password->setPlaceholderText("密码");
 }
 
 login::~login()

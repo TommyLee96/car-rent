@@ -22,6 +22,10 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: qconicalgradient(cx:0.5, cy:0.5, angle:0, stop:0 rgba(255, 255, 255, 255), stop:0.373979 rgba(255, 255, 255, 255), stop:0.373991 rgba(33, 30, 255, 255), stop:0.624018 rgba(33, 30, 255, 255), stop:0.624043 rgba(255, 0, 0, 255), stop:1 rgba(255, 0, 0, 255));
+font: 75 14pt &quot;Arial&quot;;</string>
+   </property>
    <property name="text">
     <string>系统暂时没有该驾驶证信息，请补充完整信息</string>
    </property>
@@ -31,13 +35,17 @@
     <rect>
      <x>40</x>
      <y>40</y>
-     <width>62</width>
+     <width>82</width>
      <height>231</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLabel" name="label_4">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+ </string>
+      </property>
       <property name="text">
        <string>驾驶证号</string>
       </property>
@@ -45,6 +53,10 @@
     </item>
     <item>
      <widget class="QLabel" name="label_6">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+ </string>
+      </property>
       <property name="text">
        <string>驾照类型</string>
       </property>
@@ -52,6 +64,10 @@
     </item>
     <item>
      <widget class="QLabel" name="label_5">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+ </string>
+      </property>
       <property name="text">
        <string>  姓名</string>
       </property>
@@ -59,6 +75,10 @@
     </item>
     <item>
      <widget class="QLabel" name="label_3">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+ </string>
+      </property>
       <property name="text">
        <string>  性别</string>
       </property>
@@ -66,6 +86,10 @@
     </item>
     <item>
      <widget class="QLabel" name="label_7">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+ </string>
+      </property>
       <property name="text">
        <string>  驾龄</string>
       </property>
@@ -73,6 +97,10 @@
     </item>
     <item>
      <widget class="QLabel" name="label_8">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+ </string>
+      </property>
       <property name="text">
        <string>有效期开始</string>
       </property>
@@ -80,6 +108,10 @@
     </item>
     <item>
      <widget class="QLabel" name="label_9">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+ </string>
+      </property>
       <property name="text">
        <string>有效期结束</string>
       </property>
@@ -93,8 +125,17 @@
      <x>310</x>
      <y>200</y>
      <width>75</width>
-     <height>23</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
    </property>
    <property name="text">
     <string>确认信息</string>
@@ -105,19 +146,39 @@
     <rect>
      <x>140</x>
      <y>70</y>
-     <width>90</width>
+     <width>125</width>
      <height>201</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLineEdit" name="lineEdit_2">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QComboBox" name="comboBox">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
       <item>
        <property name="text">
         <string>男</string>
@@ -131,13 +192,34 @@
      </widget>
     </item>
     <item>
-     <widget class="QSpinBox" name="spinBox"/>
+     <widget class="QSpinBox" name="spinBox">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QDateEdit" name="dateEdit"/>
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QDateEdit" name="dateEdit_2"/>
+     <widget class="QDateEdit" name="dateEdit_2">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -145,10 +227,16 @@
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>30</y>
-     <width>81</width>
-     <height>31</height>
+     <y>40</y>
+     <width>101</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
    </property>
    <property name="text">
     <string>TextLabel</string>

@@ -36,6 +36,7 @@ private:
     QSqlTableModel *model2;
     QSqlTableModel *model3;
     QSqlTableModel *model4;
+    QSqlQueryModel *model5;//租车
 
 };
 
