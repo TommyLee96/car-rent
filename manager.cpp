@@ -33,6 +33,22 @@ manager::manager(QWidget *parent) :
     qDebug()<<ui->dateEdit->date().daysTo(ui->dateEdit_2->date())<<"oooo"<<ui->dateEdit_2->text()<<ui->dateEdit_2->text().mid(0,4).toInt()<<ui->dateEdit_2->text().mid(5,2).toInt()<<ui->dateEdit_2->text().mid(8,2).toInt();
     //ui->spinBox->setMinimum(500);
     connect(ui->tableView, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show3()));
+
+    /*
+     *续租
+     *show4()  为续租
+     */
+     model2 = new QSqlQueryModel(this);
+     ui->tableView_2->setModel(model2);
+     ui->tableView_2->setSelectionBehavior ( QAbstractItemView::SelectRows);
+     ui->tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+     //ui->tableView_2->setSelectionBehavior(SelectRows);
+     ui->tableView_2->horizontalHeader()->setStyleSheet("QHeaderView::section{background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(46,46,46),stop:1 rgb(66,66,66));color: rgb(210,210,210);;padding-left: 4px;border: 1px solid #383838;}"); //设置表头背景色
+     ui->tableView_2->setAlternatingRowColors(true); //使用交替行颜色
+     ui->dateEdit_3->setDate(QDate::currentDate());
+     ui->dateEdit_3->setCalendarPopup(true);
+     ui->dateEdit_3->setDisplayFormat("yyyy-MM-dd");
+     connect(ui->tableView_2, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show4()));
  }
 void manager::show3()
 {
@@ -41,6 +57,24 @@ void manager::show3()
     showinfo3(model->index(curRow,0).data().toInt());
 
 }
+void manager::show4()
+{
+    int curRow = ui->tableView_2->currentIndex().row();
+    /*获得驾驶证号
+     *
+     *
+     *
+     */
+    //qDebug()<<model2->index(curRow,3).data().toInt()<<model2->index(curRow,1).data().toString();
+    //showinfo4(model2->index(curRow,0).data().toInt());
+
+}
+
+void manager::showinfo4(int row)
+{
+
+}
+
 
 void manager::showinfo3(int row)
 {
@@ -121,10 +155,7 @@ void manager::on_pushButton_clicked()
       {
       qDebug()<<"jsjsajcjs";
       }
-    //  model->setQuery(QString("select carid,carnumber from carinfo where carid not in(select carid from rentinfo where( rentbegin=<'%1'and preend>='%2') or ('%3'>preend and preend>='%4') )").arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit->text()));
-     // model->setQuery(QString("select carid,carnumber from carinfo)"));
       model->setQuery(QString("select carid,carnumber from carinfo where carid not in(select carid from rentinfo where ( rentbegin<='%1'and preend>='%2') or ('%3'>preend and preend>='%4'))").arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit->text()));
-
       ui->tableView->hideColumn(0);
       //先查所有车辆，然后在订单表子查询结束时间比订单表开始时间早或者开始时间比结束时间晚
   }
@@ -204,4 +235,52 @@ void manager::on_pushButton_2_clicked()
     {
         QMessageBox::information(this,tr("提示"),tr("请输入18位驾驶证号      \n\n     "));
     }
+}
+
+void manager::on_pushButton_3_clicked()
+{
+    //model2->setQuery(QString("select * from rentinfo"));
+    /*
+     * 首先判断驾驶证号是否合法
+     *
+     */
+    int licenidflag=0;
+    QString license5=ui->lineEdit_3->text();
+    //现在在licenseinfo里面查是否有这个驾驶证号,如果有则返回licenseid
+    QSqlQuery query;
+    query.exec(QString("select licenseid from licenseid where licensenum='%1'").arg(license5)) ;//"delete from carmodel where carmodelid=")
+    while(query.next())
+    {
+       licenidflag=query.value(0).toInt();
+    }
+    qDebug()<<licenidflag<<query.value(6)<<"8888888j";//如果查到那人的驾驶证号，
+    model2->setQuery(QString("select * from rentinfo where licenseid='%1'").arg(licenidflag));
+    //qDebug()<<licenidflag<<query.value(6)<<"jjjjjjjjjj";//如果查到那人的驾驶证号，
+
+    //现在通过获取的licenseflag在rent表中查该司机的订单，并返回到table
+
+    //licensenumber=license;//将驾照号码传递给全局变量
+
+
+
+}
+
+void manager::on_pushButton_4_clicked()
+{
+   int curRow = ui->tableView_2->currentIndex().row();
+    qDebug()<<model2->index(curRow,6).data().toDate();
+    //先判断是否选中表格的车型
+     //然后判断时间是否小于原来的preend
+     if(ui->dateEdit_3->date()>model2->index(curRow,6).data().toDate())
+     {
+         //进行续租操作
+         qDebug()<<"可以";
+     }
+     else
+     {
+         //QMessageBox::information(this, QString("恭喜"),QString(model2->index(curRow,6).data().toString()+tr("到"));
+
+         QMessageBox::information(this,tr("提示"),tr("续租日期小于原定交车时间，请选择大于时间      \n\n     "));
+
+     }
 }

@@ -20,13 +20,20 @@ public:
 private slots:
     void on_pushButton_clicked();
     void show3();
+    void show4();
     void showinfo3(int row);
+    void showinfo4(int row);
     void on_pushButton_2_clicked();
     void getcar();
 
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
 private:
     Ui::manager *ui;
-    QSqlQueryModel *model;
+    QSqlQueryModel *model;//租车
+    QSqlQueryModel *model2; //还车
 };
 
 #endif // MANAGER_H
