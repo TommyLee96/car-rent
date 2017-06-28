@@ -137,6 +137,15 @@ void login::on_pushButton_clicked()
               {
                    //userinfo=username;
                    qDebug()<<"dendian  "<<flag<<"";
+                   //需要把shopid赋值
+                   QSqlQuery query3;
+                   query3.exec(QString("select shopid from shopinfo where shopkeeper='%1'").arg(creator));
+                   while(query3.next())
+                   {
+                        qDebug()<<shopid<<query3.value(0).toString()<<"zheliasdmkasjdkasd";
+                        shopid=query3.value(0).toInt();
+                        qDebug()<<shopid;
+                   }
                    accept(); //user++;
                    this->close();
               }

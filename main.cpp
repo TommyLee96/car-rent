@@ -14,6 +14,9 @@ int main(int argc, char *argv[])
         return 1;
     }
     login h;
+
+
+
     if(h.exec()==QDialog::Accepted)
     {
         if(h.flag==0)   //财务登陆

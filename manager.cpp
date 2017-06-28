@@ -31,6 +31,7 @@ manager::manager(QWidget *parent) :
     ui->tableView->horizontalHeader()->setVisible(false);
     ui->tableView->verticalHeader()->setVisible(false);
     qDebug()<<ui->dateEdit->date().daysTo(ui->dateEdit_2->date())<<"oooo"<<ui->dateEdit_2->text()<<ui->dateEdit_2->text().mid(0,4).toInt()<<ui->dateEdit_2->text().mid(5,2).toInt()<<ui->dateEdit_2->text().mid(8,2).toInt();
+    //ui->spinBox->setMinimum(500);
     connect(ui->tableView, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show3()));
  }
 void manager::show3()
@@ -120,7 +121,10 @@ void manager::on_pushButton_clicked()
       {
       qDebug()<<"jsjsajcjs";
       }
-      model->setQuery(QString("select carid,carnumber from carinfo where carid not in(select carid from rentinfo where ( rentbegin<'%1'and preend>'%2') or ('%3'<preend and preend<'%4'))").arg(ui->dateEdit->text()).arg(ui->dateEdit->text()).arg(ui->dateEdit->text()).arg(ui->dateEdit_2->text()));
+    //  model->setQuery(QString("select carid,carnumber from carinfo where carid not in(select carid from rentinfo where( rentbegin=<'%1'and preend>='%2') or ('%3'>preend and preend>='%4') )").arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit->text()));
+     // model->setQuery(QString("select carid,carnumber from carinfo)"));
+      model->setQuery(QString("select carid,carnumber from carinfo where carid not in(select carid from rentinfo where ( rentbegin<='%1'and preend>='%2') or ('%3'>preend and preend>='%4'))").arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit->text()));
+
       ui->tableView->hideColumn(0);
       //先查所有车辆，然后在订单表子查询结束时间比订单表开始时间早或者开始时间比结束时间晚
   }
@@ -129,6 +133,8 @@ void manager::on_pushButton_clicked()
 void manager::on_pushButton_2_clicked()
 {
     int flag=0;
+    //QDateTime time = QDateTime::currentDateTime();//获取系统现在的时间
+   // qDebug()<< time.toString("yyyyMMdd"+creator); //设置显示格式<<"看看看";//如果查到那人的驾驶证号，
     QString license=ui->lineEdit->text();
     licensenumber=license;//将驾照号码传递给全局变量
     if(license.length()==2)
@@ -145,11 +151,43 @@ void manager::on_pushButton_2_clicked()
         {
             flag=1;
             qDebug()<<query.value(0).toInt()<<"HEHEHHEHHEEH";//如果查到那人的驾驶证号，
+             QString premoney1=ui->lineEdit_2->text();
+            if(premoney1.length()==0)
+            {
+                QMessageBox::information(this,tr("提示"),tr("请填写用户缴纳的押金！      \n\n     "));
+            }
+            else
+            {
             /*下面是租车操作，同inputlicense类
-             *
-             *
-             *
+             *query.value(0).toInt()  licenseid
+             *model->index(curRow,0).data().toString()  carid
+             *产生rentnum  日期加经理账号加carid
+             * 需要查询shopid
+             * ui->dateEdit->date()  rentbegin开始
+             * ui->dateEdit_2->date() preend结束
+             * 生成订单号
              */
+                QDateTime time = QDateTime::currentDateTime();//获取系统现在的时间
+                qDebug()<< time.toString("yyyyMMdd"+creator+license); //设置显示格式<<"看看看";//如果查到那人的驾驶证号，
+                QSqlQuery query7;
+                query7.prepare("INSERT INTO rentinfo(rentnum,shopid,licenseid,carid,rentbegin,preend,premoney,rentstatus,creater,amenddate) values(:rentnum,:shopid,:licenseid,:carid,:rentbegin,:preend,:premoney,:rentstatus,:creater,:amenddate)");
+                query7.bindValue(":rentnum",time.toString("yyyyMMdd"+creator+license));
+                query7.bindValue(":shopid",shopid);
+                query7.bindValue(":licenseid",query.value(0).toInt());
+                query7.bindValue(":carid",model->index(curRow,0).data().toInt());
+                query7.bindValue(":rentbegin",ui->dateEdit->text());
+                query7.bindValue(":preend",ui->dateEdit_2->text());
+                query7.bindValue(":premoney",premoney1);       //preend
+                query7.bindValue(":rentstatus",0);  //premoney
+
+                query7.bindValue(":creater",creator);
+                query7.bindValue(":amenddate",QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
+                query7.exec();
+                qDebug()<<"bigbigibgi"<<shopid<<query.value(0).toInt()<<model->index(curRow,0).data().toInt();
+                qDebug()<<ui->dateEdit->date()<<ui->dateEdit_2->text()<<premoney1;//如果查到那人的驾驶证号，
+                model->setQuery(QString("select carid,carnumber from carinfo where carid not in(select carid from rentinfo where ( rentbegin<='%1'and preend>='%2') or ('%3'>preend and preend>='%4'))").arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit_2->text()).arg(ui->dateEdit->text()));
+
+            }
         }
         if(flag==0)   //flag=0时说明没有该驾驶证
         {
