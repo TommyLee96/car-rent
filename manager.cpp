@@ -242,7 +242,7 @@ void manager::on_pushButton_3_clicked()
     //model2->setQuery(QString("select * from rentinfo"));
     /*
      * 首先判断驾驶证号是否合法
-     *
+     *在订单表查询该驾驶证未完成的订单
      */
     int licenidflag=0;
     QString license5=ui->lineEdit_3->text();
@@ -254,11 +254,8 @@ void manager::on_pushButton_3_clicked()
        licenidflag=query.value(0).toInt();
     }
     qDebug()<<licenidflag<<query.value(6)<<"8888888j";//如果查到那人的驾驶证号，
-    model2->setQuery(QString("select * from rentinfo where licenseid='%1'").arg(licenidflag));
-    //qDebug()<<licenidflag<<query.value(6)<<"jjjjjjjjjj";//如果查到那人的驾驶证号，
-
+    model2->setQuery(QString("select * from rentinfo where licenseid='%1' and rentstatus='0'").arg(licenidflag));//
     //现在通过获取的licenseflag在rent表中查该司机的订单，并返回到table
-
     //licensenumber=license;//将驾照号码传递给全局变量
 
 
@@ -267,20 +264,52 @@ void manager::on_pushButton_3_clicked()
 
 void manager::on_pushButton_4_clicked()
 {
-   int curRow = ui->tableView_2->currentIndex().row();
+    int curRow = ui->tableView_2->currentIndex().row();
     qDebug()<<model2->index(curRow,6).data().toDate();
     //先判断是否选中表格的车型
      //然后判断时间是否小于原来的preend
      if(ui->dateEdit_3->date()>model2->index(curRow,6).data().toDate())
      {
          //进行续租操作
-         qDebug()<<"可以";
+         /*
+          * 更新rentinfo里preend
+          * 更新relet里
+          *
+          */
+         QSqlQuery query7;
+         query7.prepare("INSERT INTO reletinfo(rentid,reletbegin,reletend,totaltime,creater,reletdate) values(:rentid,:reletbegin,:reletend,:totaltime,:creater,:reletdate)");
+         query7.bindValue(":rentid",model2->index(curRow,0).data().toInt());
+         query7.bindValue(":reletbegin",model2->index(curRow,6).data().toString());
+         query7.bindValue(":reletend",ui->dateEdit_3->text());
+         query7.bindValue(":totaltime",model2->index(curRow,6).data().toDate().daysTo(ui->dateEdit_3->date()));
+         query7.bindValue(":creater",creator);
+         query7.bindValue(":reletdate",QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
+         query7.exec();
+         QSqlQuery query6;
+         query6.prepare("UPDATE rentinfo SET preend=? where rentid=?");
+         query6.addBindValue(ui->dateEdit_3->text());
+         query6.addBindValue(model2->index(curRow,0).data().toInt());
+         query6.exec();
+         QSqlQuery query;
+         query.exec(QString("select licenseid from licenseid where licensenum='%1'").arg(ui->lineEdit_3->text())) ;//"delete from carmodel where carmodelid=")
+         while(query.next())
+         {
+             model2->setQuery(QString("select * from rentinfo where licenseid='%1' and rentstatus='0'").arg(query.value(0).toInt()));
+         }
      }
      else
      {
-         //QMessageBox::information(this, QString("恭喜"),QString(model2->index(curRow,6).data().toString()+tr("到"));
-
-         QMessageBox::information(this,tr("提示"),tr("续租日期小于原定交车时间，请选择大于时间      \n\n     "));
-
+          QMessageBox::information(this,tr("提示"),tr("续租日期小于原定交车时间，请选择大于时间      \n\n     "));
      }
+}
+
+void manager::on_pushButton_5_clicked()
+{
+    /*
+     * 还车
+     * 将订单状态rentstatus改为1
+     * 统计所有费用realmoney
+     * 更新realend
+     */
+
 }
