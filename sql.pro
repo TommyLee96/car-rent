@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     finance.cpp \
     manager.cpp \
     global.cpp \
-    inputlicense.cpp
+    inputlicense.cpp \
+    rotatedproxymode.cpp \
+    addshop.cpp
 
 HEADERS  += \
     connecttion.h \
@@ -31,14 +33,17 @@ HEADERS  += \
     finance.h \
     global.h \
     manager.h \
-    inputlicense.h
+    inputlicense.h \
+    rotatedproxymodel.h \
+    addshop.h
 
 FORMS    += \
     login.ui \
     admin.ui \
     finance.ui \
     manager.ui \
-    inputlicense.ui
+    inputlicense.ui \
+    addshop.ui
 
 RESOURCES += \
     image.qrc

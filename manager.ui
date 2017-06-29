@@ -610,8 +610,8 @@ color:#000000;</string>
     <widget class="QLineEdit" name="lineEdit_3">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>70</y>
+       <x>100</x>
+       <y>60</y>
        <width>113</width>
        <height>20</height>
       </rect>
@@ -626,12 +626,15 @@ color:#000000;</string>
        <height>451</height>
       </rect>
      </property>
+     <property name="showGrid">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_3">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>150</y>
+       <x>290</x>
+       <y>60</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -643,8 +646,8 @@ color:#000000;</string>
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>240</y>
+       <x>290</x>
+       <y>150</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -656,8 +659,8 @@ color:#000000;</string>
     <widget class="QDateEdit" name="dateEdit_3">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>240</y>
+       <x>100</x>
+       <y>150</y>
        <width>110</width>
        <height>22</height>
       </rect>
@@ -666,8 +669,8 @@ color:#000000;</string>
     <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>310</y>
+       <x>290</x>
+       <y>270</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -679,8 +682,8 @@ color:#000000;</string>
     <widget class="QLabel" name="label_22">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>40</y>
+       <x>20</x>
+       <y>30</y>
        <width>59</width>
        <height>78</height>
       </rect>
@@ -689,11 +692,100 @@ color:#000000;</string>
       <string>驾驶证号</string>
      </property>
     </widget>
+    <widget class="QTableWidget" name="tableWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>220</y>
+       <width>256</width>
+       <height>192</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="widget">
     <attribute name="title">
      <string>财务</string>
     </attribute>
+    <widget class="QDateEdit" name="dateEdit_4">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>100</y>
+       <width>110</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="dateEdit_5">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>150</y>
+       <width>110</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_6">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>280</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>260</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>时间</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>290</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>所有车型</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>40</y>
+       <width>261</width>
+       <height>371</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>190</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

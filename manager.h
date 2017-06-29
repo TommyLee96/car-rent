@@ -1,6 +1,6 @@
 #ifndef MANAGER_H
 #define MANAGER_H
-
+#include"rotatedproxymodel.h"
 #include <QDialog>
 class QSqlTableModel;
 class QSqlQueryModel;
@@ -36,6 +36,8 @@ private:
     Ui::manager *ui;
     QSqlQueryModel *model;//租车
     QSqlQueryModel *model2; //还车
+    RotatedProxyModel *standardModel;
+
 };
 
 #endif // MANAGER_H

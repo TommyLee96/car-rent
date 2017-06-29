@@ -358,4 +358,24 @@ void manager::on_pushButton_5_clicked()
      * 把realend改为今天
      * 计算钱  减去押金
 */
+    void RentingMain::on_tableViewOrder_clicked(const QModelIndex &index)
+    {
+        ui->tableWidgetOrdertable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        QString orderNum=ui->tableViewOrder->model()->data(ui->tableViewOrder->model()->index(index.row(),0)).toString();
+        QString search="select AretVprac, Vinitdistance, Venddistance, breaktoll, pracusedtoll, timeouttoll, Servicetoll, Illegaltoll, Distanceouttoll, Total, State from Rentinfo ";
+        search.append(QString("where Ono='%1'").arg(orderNum));
+        qDebug()<<search;
+        QStringList headers=GetHeaders(search);
+        QSqlQuery query;
+        query.exec(search);
+        query.next();
+        ui->tableWidgetOrdertable->setRowCount(headers.size());
+        ui->tableWidgetOrdertable->setColumnCount(2);
+        for(int i=0;i<headers.size();i++)
+        {
+            ui->tableWidgetOrdertable->setItem(i,0,new QTableWidgetItem(headers.at(i)));
+            ui->tableWidgetOrdertable->setItem(i,1,new QTableWidgetItem(query.value(i).toString()));
+        }
+    
+    }
 }

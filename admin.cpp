@@ -15,6 +15,7 @@
 #include "admin.h"
 #include "ui_admin.h"
 #include"global.h"
+#include"addshop.h"
 #include <QSqlRelationalDelegate>
 #include<QDate>
 QVariant  var_5(100);
@@ -90,8 +91,17 @@ admin::admin(QWidget *parent) :
     ui->dateEdit_3->setDate(QDate::currentDate());
     ui->dateEdit_3->setDisplayFormat("yyyy-MM-dd");
     ui->comboBox->setModel(model2);
+    connect(ui->tableView_3, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show3()));
 
-
+    model4 = new QSqlQueryModel(this);
+    model4->setQuery(QString("select * from shopinfo where flag=0"));
+    ui->tableView_3->setModel(model4);
+    /*ui->tableView_3->hideColumn(0);
+    ui->tableView_3->hideColumn(1);
+    ui->tableView_3->hideColumn(3);
+    ui->tableView_3->hideColumn(4);
+    ui->tableView_3->hideColumn(5);
+    ui->tableView_3->hideColumn(6);*/
 }
 
 admin::~admin()
@@ -101,12 +111,21 @@ admin::~admin()
 void admin::show1()
 {
     int curRow = ui->tableView_2->currentIndex().row();
+    qDebug()<<curRow<<"jianjiannian";
     showinfo(model2->index(curRow,0).data().toInt());
 }
 void admin::show2()
 {
     int curRow = ui->tableView->currentIndex().row();
+    qDebug()<<curRow<<"%$^$TGFDGE";
     showinfo2(model3->index(curRow,0).data().toInt());
+}
+void admin::show3()
+{
+    int curRow = ui->tableView_3->currentIndex().row();
+    qDebug()<<curRow<<model4->index(curRow,0).data().toInt()<<model4->index(curRow,1).data().toInt();
+
+    showinfo3(model4->index(curRow,1).data().toInt(),model4->index(curRow,0).data().toInt());
 }
 void admin::on_pushButton_clicked()
 {
@@ -174,6 +193,8 @@ void admin::on_pushButton_2_clicked()
 }
 void admin::showinfo(int row){
      QSqlQuery query;
+     qDebug()<<row;
+
      query.exec(QString("select * from carmodel where cartypeid='%1'").arg(row));
      while(query.next())
      {
@@ -264,6 +285,37 @@ void admin::showinfo2(int row){
          qDebug()<<"flag5--";
      }
 }
+
+void admin::showinfo3(int row,int x){
+     QSqlQuery query;
+     query.exec(QString("select * from clientinfo where clientid='%1'").arg(row));
+     qDebug()<<row<<x;
+     //ui->label_40->setText(x);
+     while(query.next())
+
+     {
+
+         ui->lineEdit_8->setText(query.value(0).toString());
+         ui->lineEdit_13->setText(query.value(1).toString());
+     }
+         QSqlQuery query2;
+         query2.exec(QString("select * from shopinfo where shopid='%1'").arg(x));
+         while(query2.next())
+         {
+             qDebug()<<"flag2--";
+             ui->label_40->setText(query2.value(0).toString());
+             ui->lineEdit_22->setText(query2.value(7).toString());
+             ui->lineEdit_18->setText(query2.value(2).toString());
+             ui->lineEdit_19->setText(query2.value(3).toString());
+             ui->label_37->setText(query2.value(4).toString());
+             ui->label_38->setText(query2.value(5).toString());
+
+
+         }
+
+
+}
+
 
 void admin::on_pushButton_3_clicked()
 {
@@ -407,3 +459,35 @@ void admin::on_pushButton_7_clicked()
 }
 
 
+
+void admin::on_pushButton_8_clicked()
+{
+   addshop shop1;
+   shop1.exec();
+   qDebug()<<"结束";
+   model4->setQuery(QString("select * from shopinfo where flag=0"));
+
+}
+
+void admin::on_pushButton_9_clicked()
+{
+    QSqlQuery query;
+    query.prepare("UPDATE clientinfo SET password=? where clientid=?");
+    query.addBindValue(QString(ui->lineEdit_13->text()));
+    query.addBindValue(ui->lineEdit_8->text().toInt());
+    query.exec();
+    qDebug()<<ui->lineEdit_13->text()<<ui->label_40->text().toInt()<<QString(ui->lineEdit_22->text());
+    qDebug()<<QString(ui->lineEdit_18->text())<<QString(ui->lineEdit_19->text())<<ui->lineEdit_8->text().toInt();
+    QSqlQuery query2;
+    query2.prepare("UPDATE shopinfo SET ownername=?,shopaddress=?,shoptel=? where shopid=?");
+    query2.addBindValue(QString(ui->lineEdit_22->text()));
+    query2.addBindValue(QString(ui->lineEdit_18->text()));
+    query2.addBindValue(QString(ui->lineEdit_19->text()));
+    query2.addBindValue(ui->label_40->text().toInt());
+     qDebug()<<ui->lineEdit_8->text().toInt()<<"hahahahhaahha";
+
+    query2.exec();
+    model4->setQuery(QString("select * from shopinfo where flag=0"));
+    QMessageBox::information(this,tr("提示"),tr("修改成功！      \n\n     "));
+
+}
