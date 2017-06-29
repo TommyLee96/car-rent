@@ -27,8 +27,11 @@ admin::admin(QWidget *parent) :
     connect(ui->tableView_2, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show1()));
     model2 = new QSqlQueryModel(this);
     model2->setQuery(QString("select * from carmodel where flag!=1"));
-    model2->sort(0,Qt::DescendingOrder);
+   // model2->sort(0,Qt::AscendingOrder);
+   // model2->sort(0, Qt::DescendingOrder);
     ui->tableView_2->setModel(model2);
+    //model2->sort(0, Qt::DescendingOrder);
+    model2->sort(0,Qt::AscendingOrder);
     ui->tableView_2->hideColumn(0);
     ui->tableView_2->hideColumn(2);
     ui->tableView_2->hideColumn(3);
@@ -176,7 +179,8 @@ void admin::on_pushButton_2_clicked()
     ui->label_3->setText(creator);
     ui->label_4->setText(QString(QDateTime::currentDateTime().toString("yyyy-MM-dd")));
     query.exec();
-    model2->setQuery(QString("select * from carmodel where flag!=1)"));
+    model2->setQuery(QString("select * from carmodel where flag!=1"));
+    //ui->tableView_2->setModel(model2);
     QString hehe=creator+"修改信息了";
     // 基本 URL
     QString baseUrl = "https://sc.ftqq.com/SCU8983Tc368ce0619fe334835f91607b35602d659391d20345f6.send?text=";

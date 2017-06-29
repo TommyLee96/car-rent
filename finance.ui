@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>837</width>
-    <height>437</height>
+    <width>623</width>
+    <height>411</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,24 +16,52 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>50</y>
-     <width>121</width>
+     <x>130</x>
+     <y>20</y>
+     <width>125</width>
      <height>151</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QDateEdit" name="dateEdit"/>
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 10pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QDateEdit" name="dateEdit_2"/>
+     <widget class="QDateEdit" name="dateEdit_2">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 10pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="comboBox"/>
+     <widget class="QComboBox" name="comboBox">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 10pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="comboBox_2"/>
+     <widget class="QComboBox" name="comboBox_2">
+      <property name="styleSheet">
+       <string notr="true">border: 1px solid gray;
+font: 10pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -41,7 +69,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>50</y>
+     <y>20</y>
      <width>111</width>
      <height>141</height>
     </rect>
@@ -49,6 +77,13 @@
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true"> 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+   
+</string>
+      </property>
       <property name="text">
        <string>开始时间</string>
       </property>
@@ -56,6 +91,13 @@
     </item>
     <item>
      <widget class="QLabel" name="label_2">
+      <property name="styleSheet">
+       <string notr="true"> 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+   
+</string>
+      </property>
       <property name="text">
        <string>结束时间</string>
       </property>
@@ -63,6 +105,13 @@
     </item>
     <item>
      <widget class="QLabel" name="label_4">
+      <property name="styleSheet">
+       <string notr="true"> 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+   
+</string>
+      </property>
       <property name="text">
        <string>门店</string>
       </property>
@@ -70,6 +119,13 @@
     </item>
     <item>
      <widget class="QLabel" name="label_3">
+      <property name="styleSheet">
+       <string notr="true"> 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+   
+</string>
+      </property>
       <property name="text">
        <string>车型</string>
       </property>
@@ -80,11 +136,20 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>360</y>
+     <x>120</x>
+     <y>320</y>
      <width>75</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
    </property>
    <property name="text">
     <string>查询</string>
@@ -93,10 +158,10 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>0</y>
-     <width>451</width>
-     <height>441</height>
+     <x>380</x>
+     <y>20</y>
+     <width>211</width>
+     <height>151</height>
     </rect>
    </property>
   </widget>
@@ -104,14 +169,21 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>230</y>
-     <width>227</width>
+     <y>190</y>
+     <width>275</width>
      <height>80</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QCheckBox" name="checkBox_3">
+      <property name="styleSheet">
+       <string notr="true"> 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+   
+</string>
+      </property>
       <property name="text">
        <string>所有门店</string>
       </property>
@@ -119,6 +191,13 @@
     </item>
     <item>
      <widget class="QCheckBox" name="checkBox_2">
+      <property name="styleSheet">
+       <string notr="true"> 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+   
+</string>
+      </property>
       <property name="text">
        <string>所有车型</string>
       </property>
@@ -126,12 +205,35 @@
     </item>
     <item>
      <widget class="QCheckBox" name="checkBox">
+      <property name="styleSheet">
+       <string notr="true"> 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+   
+</string>
+      </property>
       <property name="text">
        <string>所有时间</string>
       </property>
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>180</y>
+     <width>391</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/4.jpg);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources/>

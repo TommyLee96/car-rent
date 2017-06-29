@@ -33,7 +33,7 @@
      <property name="geometry">
       <rect>
        <x>700</x>
-       <y>10</y>
+       <y>-20</y>
        <width>131</width>
        <height>431</height>
       </rect>
@@ -55,10 +55,10 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>90</y>
+       <x>430</x>
+       <y>80</y>
        <width>101</width>
-       <height>212</height>
+       <height>271</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -123,6 +123,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="label_42">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
+        <property name="text">
+         <string>超天数费用</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="label_12">
         <property name="styleSheet">
          <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
@@ -147,27 +157,35 @@
     <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>510</x>
-       <y>100</y>
-       <width>160</width>
-       <height>253</height>
+       <x>530</x>
+       <y>80</y>
+       <width>131</width>
+       <height>267</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="3" column="0">
        <widget class="QLineEdit" name="lineEdit_3">
         <property name="styleSheet">
-         <string notr="true">
-       border-style: solid; 
-       background: transparent;  
-       background-color:#FFFFFF; 
-         
-
-
- 
-  font: 12pt &quot;微软雅黑&quot;;
-        
-        border-radius: 10px;  </string>
+         <string notr="true"> font: 10pt &quot;微软雅黑&quot;;
+        </string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLineEdit" name="lineEdit_6">
+        <property name="styleSheet">
+         <string notr="true"> font: 10pt &quot;微软雅黑&quot;;
+        font: 10pt &quot;微软雅黑&quot;;
+         </string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="styleSheet">
+         <string notr="true"> font: 10pt &quot;微软雅黑&quot;;
+        </string>
         </property>
        </widget>
       </item>
@@ -175,50 +193,28 @@
        <widget class="QLineEdit" name="lineEdit">
         <property name="styleSheet">
          <string notr="true">
-       border-style: solid; 
-       background: transparent;  
-       background-color:#FFFFFF; 
-         
 
 
  
-  font: 12pt &quot;微软雅黑&quot;;
+  font: 10pt &quot;微软雅黑&quot;;
         
-        border-radius: 10px;  </string>
+        </string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLineEdit" name="lineEdit_2">
+      <item row="5" column="0">
+       <widget class="QLineEdit" name="lineEdit_5">
         <property name="styleSheet">
-         <string notr="true">
-       border-style: solid; 
-       background: transparent;  
-       background-color:#FFFFFF; 
-         
-
-
- 
-  font: 12pt &quot;微软雅黑&quot;;
-        
-        border-radius: 10px;  </string>
+         <string notr="true"> font: 10pt &quot;微软雅黑&quot;;
+        </string>
         </property>
        </widget>
       </item>
-      <item row="6" column="0">
-       <widget class="QLineEdit" name="lineEdit_6">
+      <item row="4" column="0">
+       <widget class="QLineEdit" name="lineEdit_4">
         <property name="styleSheet">
-         <string notr="true">
-       border-style: solid; 
-       background: transparent;  
-       background-color:#FFFFFF; 
-         
-
-
- 
-  font: 12pt &quot;微软雅黑&quot;;
-        
-        border-radius: 10px;  </string>
+         <string notr="true"> font: 10pt &quot;微软雅黑&quot;;
+        </string>
         </property>
        </widget>
       </item>
@@ -232,37 +228,14 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLineEdit" name="lineEdit_4">
-        <property name="styleSheet">
-         <string notr="true">
-       border-style: solid; 
-       background: transparent;  
-       background-color:#FFFFFF; 
-         
-
-
- 
-  font: 12pt &quot;微软雅黑&quot;;
-        
-        border-radius: 10px;  </string>
+      <item row="7" column="0">
+       <widget class="QLineEdit" name="lineEdit_7">
+        <property name="enabled">
+         <bool>true</bool>
         </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLineEdit" name="lineEdit_5">
         <property name="styleSheet">
-         <string notr="true">
-       border-style: solid; 
-       background: transparent;  
-       background-color:#FFFFFF; 
-         
-
-
- 
-  font: 12pt &quot;微软雅黑&quot;;
-        
-        border-radius: 10px;  </string>
+         <string notr="true"> font: 10pt &quot;微软雅黑&quot;;
+        </string>
         </property>
        </widget>
       </item>
@@ -276,33 +249,16 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="0">
-       <widget class="QLineEdit" name="lineEdit_7">
-        <property name="styleSheet">
-         <string notr="true">
-       border-style: solid; 
-       background: transparent;  
-       background-color:#FFFFFF; 
-         
-
-
- 
-  font: 12pt &quot;微软雅黑&quot;;
-        
-        border-radius: 10px;  </string>
-        </property>
-       </widget>
-      </item>
      </layout>
      <zorder>lineEdit</zorder>
      <zorder>lineEdit_6</zorder>
-     <zorder>label_3</zorder>
-     <zorder>label_4</zorder>
      <zorder>lineEdit_2</zorder>
      <zorder>lineEdit_3</zorder>
      <zorder>lineEdit_4</zorder>
      <zorder>lineEdit_5</zorder>
      <zorder>lineEdit_7</zorder>
+     <zorder>label_3</zorder>
+     <zorder>label_4</zorder>
     </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -432,8 +388,8 @@
     <widget class="QLabel" name="label_13">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>50</y>
+       <x>420</x>
+       <y>30</y>
        <width>391</width>
        <height>251</height>
       </rect>
@@ -457,6 +413,12 @@
         <property name="enabled">
          <bool>true</bool>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -472,7 +434,14 @@
        <widget class="QLineEdit" name="lineEdit_12"/>
       </item>
       <item>
-       <widget class="QDateEdit" name="dateEdit"/>
+       <widget class="QDateEdit" name="dateEdit">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid gray;
+font: 10pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit_14"/>
@@ -487,10 +456,24 @@
        <widget class="QLineEdit" name="lineEdit_17"/>
       </item>
       <item>
-       <widget class="QDateEdit" name="dateEdit_2"/>
+       <widget class="QDateEdit" name="dateEdit_2">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid gray;
+font: 10pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="dateEdit_3"/>
+       <widget class="QDateEdit" name="dateEdit_3">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid gray;
+font: 10pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit_20"/>
@@ -652,11 +635,20 @@
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>360</y>
-       <width>75</width>
+       <x>440</x>
+       <y>340</y>
+       <width>111</width>
        <height>23</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
      </property>
      <property name="text">
       <string>确认修改</string>
@@ -665,11 +657,20 @@
     <widget class="QPushButton" name="pushButton_6">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>380</y>
-       <width>75</width>
+       <x>440</x>
+       <y>370</y>
+       <width>111</width>
        <height>23</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
      </property>
      <property name="text">
       <string>新增车辆</string>
@@ -678,11 +679,20 @@
     <widget class="QPushButton" name="pushButton_7">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>440</x>
        <y>400</y>
-       <width>81</width>
+       <width>111</width>
        <height>23</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
      </property>
      <property name="text">
       <string>删除选中车辆</string>
@@ -712,6 +722,15 @@
        <height>23</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
+     </property>
      <property name="text">
       <string>新增分店</string>
      </property>
@@ -725,6 +744,15 @@
        <height>23</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
+     </property>
      <property name="text">
       <string>确认修改</string>
      </property>
@@ -735,12 +763,15 @@
        <x>290</x>
        <y>10</y>
        <width>71</width>
-       <height>181</height>
+       <height>185</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QLabel" name="label_39">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>经理名</string>
         </property>
@@ -748,6 +779,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_31">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>分店账号</string>
         </property>
@@ -755,6 +789,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_32">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>密码</string>
         </property>
@@ -762,6 +799,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_34">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>地址</string>
         </property>
@@ -769,6 +809,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_33">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>联系电话</string>
         </property>
@@ -776,6 +819,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_35">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>上级管理</string>
         </property>
@@ -783,6 +829,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_36">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>加盟时间</string>
         </property>

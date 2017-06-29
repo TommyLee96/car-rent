@@ -20,6 +20,8 @@ private slots:
     void show2(int state);
     void show3(int state);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::finance *ui;
 };

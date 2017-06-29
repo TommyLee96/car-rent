@@ -39,10 +39,10 @@ private slots:
 private:
     Ui::admin *ui;
     //Ui::admin *completer;
-    QSqlQueryModel *model;//租车
-    QSqlQueryModel *model2; //还车
-    QSqlQueryModel *model3;//租车
-    QSqlQueryModel *model4; //还车
+    QSqlQueryModel *model;
+    QSqlQueryModel *model2;
+    QSqlQueryModel *model3;
+    QSqlQueryModel *model4;
    /* QSqlTableModel *model;
     QSqlTableModel *model2;
     QSqlTableModel *model3;

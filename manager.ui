@@ -749,7 +749,7 @@ color:#000000;</string>
        <x>100</x>
        <y>50</y>
        <width>111</width>
-       <height>121</height>
+       <height>151</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -789,6 +789,16 @@ color:#000000;</string>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>130</y>
+       <width>256</width>
+       <height>192</height>
+      </rect>
+     </property>
     </widget>
    </widget>
   </widget>
