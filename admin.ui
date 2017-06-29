@@ -445,10 +445,10 @@
     <widget class="QWidget" name="verticalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>80</y>
+       <x>250</x>
+       <y>20</y>
        <width>160</width>
-       <height>360</height>
+       <height>411</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -472,7 +472,7 @@
        <widget class="QLineEdit" name="lineEdit_12"/>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_13"/>
+       <widget class="QDateEdit" name="dateEdit"/>
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit_14"/>
@@ -487,10 +487,10 @@
        <widget class="QLineEdit" name="lineEdit_17"/>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_18"/>
+       <widget class="QDateEdit" name="dateEdit_2"/>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_19"/>
+       <widget class="QDateEdit" name="dateEdit_3"/>
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit_20"/>
@@ -543,9 +543,9 @@
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>80</y>
+       <y>20</y>
        <width>74</width>
-       <height>331</height>
+       <height>401</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -652,8 +652,8 @@
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>350</y>
+       <x>430</x>
+       <y>360</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -665,7 +665,7 @@
     <widget class="QPushButton" name="pushButton_6">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>430</x>
        <y>380</y>
        <width>75</width>
        <height>23</height>
@@ -678,8 +678,8 @@
     <widget class="QPushButton" name="pushButton_7">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>410</y>
+       <x>430</x>
+       <y>400</y>
        <width>81</width>
        <height>23</height>
       </rect>

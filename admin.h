@@ -29,13 +29,18 @@ private slots:
     void on_pushButton_6_clicked();
     void on_pushButton_7_clicked();
 
+
 private:
     Ui::admin *ui;
     //Ui::admin *completer;
-    QSqlTableModel *model;
+    QSqlQueryModel *model;//租车
+    QSqlQueryModel *model2; //还车
+    QSqlQueryModel *model3;//租车
+    QSqlQueryModel *model4; //还车
+   /* QSqlTableModel *model;
     QSqlTableModel *model2;
     QSqlTableModel *model3;
-    QSqlTableModel *model4;
+    QSqlTableModel *model4;*/
     QSqlQueryModel *model5;//租车
 
 };
