@@ -111,23 +111,23 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QCheckBox" name="checkBox_3">
       <property name="text">
-       <string>所有时间</string>
+       <string>所有门店</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QCheckBox" name="checkBox_2">
       <property name="text">
        <string>所有车型</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="radioButton_2">
+     <widget class="QCheckBox" name="checkBox">
       <property name="text">
-       <string>所有门店</string>
+       <string>所有时间</string>
       </property>
      </widget>
     </item>

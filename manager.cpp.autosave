@@ -36,14 +36,17 @@ manager::manager(QWidget *parent) :
     ui->tableView->verticalHeader()->setVisible(false);
     qDebug()<<ui->dateEdit->date().daysTo(ui->dateEdit_2->date())<<"oooo"<<ui->dateEdit_2->text()<<ui->dateEdit_2->text().mid(0,4).toInt()<<ui->dateEdit_2->text().mid(5,2).toInt()<<ui->dateEdit_2->text().mid(8,2).toInt();
     //ui->spinBox->setMinimum(500);
-    connect(ui->tableView, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show3()));
+    //connect(ui->tableView, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show3()));
+    connect(ui->checkBox,SIGNAL(stateChanged(int)),this,SLOT(show5(int)));
+    connect(ui->checkBox_2,SIGNAL(stateChanged(int)),this,SLOT(show6(int)));
 
     /*
      *续租
      *show4()  为续租
      */
      model2 = new QSqlQueryModel(this);
-     model2->setQuery(QString("select * from rentinfo"));
+     model2->setQuery(QString("select * from rentinfo where rentstatus='0'"));
+    // model2->setQuery(QString("select * from rentinfo"));
 
 
 
@@ -78,6 +81,23 @@ manager::manager(QWidget *parent) :
      ui->dateEdit_5->setCalendarPopup(true);
      ui->dateEdit_5->setDisplayFormat("yyyy-MM-dd");
      connect(ui->tableView_2, SIGNAL(clicked ( const QModelIndex &)), this,SLOT(show4()));
+
+     QSqlQuery query11;
+     query11.exec(QString("select cartypeid,carmodel from carmodel"));
+     while(query11.next())
+     {
+        ui->comboBox->addItem(query11.value(0).toString()+'-'+query11.value(1).toString());
+
+     }
+     ui->tableWidget_2->verticalHeader()->setVisible(false); //设置垂直头不可见
+     ui->tableWidget_2->horizontalHeader()->setVisible(false);
+     //ui->tableWidget_2->horizontalHeader()->resizeSection(0,50); //设置表头第一列的宽度为150
+
+
+    // QString a="1920x1080";
+     //QString first = a.split('x', QString::SkipEmptyParts).first();
+    // QString second = a.split('x', QString::SkipEmptyParts).last();
+     //qDebug()<<first<<second<<"hehhehe";
  }
 void manager::show3()
 {
@@ -98,7 +118,50 @@ void manager::show4()
     //showinfo4(model2->index(curRow,0).data().toInt());
 
 }
+void manager::show5(int state)
+{
+    //ui->dateEdit_4->setEnabled(0);
+           // ui->dateEdit_5->setEnabled(1);
+        if (state == Qt::Checked) // "选中"
+        {
+            ui->dateEdit_4->setEnabled(0);
+            ui->dateEdit_5->setEnabled(0);
+        }
+        else if(state == Qt::PartiallyChecked) // "半选"
+        {
+            ui->dateEdit_4->setEnabled(0);
+            ui->dateEdit_5->setEnabled(0);
+        }
+        else // 未选中 - Qt::Unchecked
+        {
+           ui->dateEdit_4->setEnabled(1);
+           ui->dateEdit_5->setEnabled(1);
+        }
 
+    qDebug()<<"响应时间";
+
+}
+void manager::show6(int state)
+{
+    //ui->dateEdit_4->setEnabled(0);
+           // ui->dateEdit_5->setEnabled(1);
+        if (state == Qt::Checked) // "选中"
+        {
+            ui->comboBox->setEnabled(0);
+            //ui->dateEdit_5->setEnabled(0);
+        }
+        else if(state == Qt::PartiallyChecked) // "半选"
+        {
+            ui->comboBox->setEnabled(0);
+        }
+        else // 未选中 - Qt::Unchecked
+        {
+           ui->comboBox->setEnabled(1);
+        }
+
+    qDebug()<<"响应时间";
+
+}
 void manager::showinfo4(int row)
 {
 
@@ -297,7 +360,7 @@ void manager::on_pushButton_3_clicked()
 void manager::on_pushButton_4_clicked()
 {
     int curRow = ui->tableView_2->currentIndex().row();
-    if(curRow==NULL)
+    if(model2->index(curRow,0).data().toInt()!=0)
     {
     qDebug()<<model2->index(curRow,6).data().toDate();
     //先判断是否选中表格的车型
@@ -357,25 +420,156 @@ void manager::on_pushButton_5_clicked()
      * 获取rentid,将该车状态改为0
      * 把realend改为今天
      * 计算钱  减去押金
-*/
-    void RentingMain::on_tableViewOrder_clicked(const QModelIndex &index)
+    */
+    int curRow = ui->tableView_2->currentIndex().row();
+   // model2->index(curRow,0).data().toInt()
+    if(model2->index(curRow,0).data().toInt()!=0)
     {
-        ui->tableWidgetOrdertable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        QString orderNum=ui->tableViewOrder->model()->data(ui->tableViewOrder->model()->index(index.row(),0)).toString();
-        QString search="select AretVprac, Vinitdistance, Venddistance, breaktoll, pracusedtoll, timeouttoll, Servicetoll, Illegaltoll, Distanceouttoll, Total, State from Rentinfo ";
-        search.append(QString("where Ono='%1'").arg(orderNum));
-        qDebug()<<search;
-        QStringList headers=GetHeaders(search);
-        QSqlQuery query;
-        query.exec(search);
-        query.next();
-        ui->tableWidgetOrdertable->setRowCount(headers.size());
-        ui->tableWidgetOrdertable->setColumnCount(2);
-        for(int i=0;i<headers.size();i++)
+
+        if(ui->lineEdit_2->text().toInt()<ui->tableWidget_2->item(4, 1)->text().toInt())
         {
-            ui->tableWidgetOrdertable->setItem(i,0,new QTableWidgetItem(headers.at(i)));
-            ui->tableWidgetOrdertable->setItem(i,1,new QTableWidgetItem(query.value(i).toString()));
+            QMessageBox::information(this,tr("提示"),tr("请输入正确公里数      \n\n     "));
+
+        }//行驶公里数
+        else
+        {
+            //开始还车
+            /*  修改该订单status 为已完成、
+             * 修改realend为当前日期
+             * 填写realmoney、
+             * 当前公里写carmodel对应的数据
+             * 弹出qmessbox提示该缴纳的金额
+             *model2初始查询
+             */
+             int h=ui->lineEdit_2->text().toInt()-ui->tableWidget_2->item(4, 1)->text().toInt();//获得超公里数
+             //int w=h*;
+             QSqlQuery query;
+             query.exec(QString("select cartypeid from carinfo where carid='%1'").arg(model2->index(curRow,4).data().toInt())) ;//"delete from carmodel where carmodelid=")
+             while(query.next())
+             {
+                 QSqlQuery query2;
+                 query2.exec(QString("select overkilmmoney from carmodel where cartypeid='%1'").arg(query.value(0).toString())) ;//"delete from carmodel where carmodelid=")
+                 while(query2.next())
+                 {
+                      qDebug()<<query2.value(0).toInt()<<"金三盘";
+                      qDebug()<<h*query2.value(0).toInt();//超公里产生的费用
+                                                          //ui->tableWidget_2->item(3, 1)->text().toInt()
+                      qDebug()<<h*query2.value(0).toInt()+ui->tableWidget_2->item(3, 1)->text().toInt();//总费用产生
+                      
+                 }
+             }
         }
-    
+    }
+    else
+    {
+       QMessageBox::information(this,tr("提示"),tr("请选择需要归还的订单号      \n\n     "));
+
+    }
+}
+void manager::on_tableView_2_clicked(const QModelIndex &index)
+ {
+    ui->tableWidget_2->setRowCount(5);  //行
+    ui->tableWidget_2->setColumnCount(2); // 列
+/*
+ *
+ * QString proName = tableWidget->item(row, col)->text();/获取tablewidget某个数据
+ *
+ *
+ *
+ *
+ *
+ */
+    ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+       int curRow = ui->tableView_2->currentIndex().row();
+
+        //QString orderNum=model2->index(curRow,0).data().toString();
+               // ui->tableWidget_2->model()->data(ui->tableView_2->model()->index(index.row(),0)).toString();
+       // QString("select * from rentinfo ");
+        //search.append(QString("where rentid='%1'").arg(orderNum));
+        qDebug()<<model2->index(curRow,0).data().toInt()<<model2->index(curRow,1).data().toString();
+          qDebug()<<model2->index(curRow,3).data().toInt()<<model2->index(curRow,4).data().toInt();
+          qDebug()<<model2->index(curRow,5).data().toString()<<model2->index(curRow,6).data().toString();
+          ui->tableWidget_2->setItem(0,0,new QTableWidgetItem("车型"));
+          ui->tableWidget_2->setItem(1,0,new QTableWidgetItem("总押金"));
+          ui->tableWidget_2->setItem(2,0,new QTableWidgetItem("司机"));
+          ui->tableWidget_2->setItem(3,0,new QTableWidgetItem("当前产生费用费"));
+          ui->tableWidget_2->setItem(4,0,new QTableWidgetItem("初始行驶公里数"));
+
+        ui->tableWidget_2->setItem(1,1,new QTableWidgetItem(model2->index(curRow,8).data().toString()));
+          //获取车型,初始公里
+        QSqlQuery query;
+        query.exec(QString("select cartypeid,runkilm from carinfo where carid='%1'").arg(model2->index(curRow,4).data().toInt())) ;//"delete from carmodel where carmodelid=")
+        while(query.next())
+        {
+            ui->tableWidget_2->setItem(4,1,new QTableWidgetItem(query.value(1).toString()));
+
+            QSqlQuery query2;
+             query2.exec(QString("select carmodel,dayrentmoney,overdatemoney from carmodel where cartypeid='%1'").arg(query.value(0).toString())) ;//"delete from carmodel where carmodelid=")
+             while(query2.next())
+             {
+                 ui->tableWidget_2->setItem(0,1,new QTableWidgetItem(query2.value(0).toString()));
+                 //判断是否提前还车
+                 /*  query2.value(1).toInt()  日租金
+                  *  query2.value(2).toInt()   超天数费用
+                  */
+                 //QDateTime time = QDateTime::currentDateTime();//获取系统现在的时间
+                // QString str = time.toString("yyyy-MM-dd"); //设置显示格式
+                 if(model2->index(curRow,6).data().toDate()>QDate::currentDate()&&model2->index(curRow,5).data().toDate()<=QDate::currentDate())
+                 {
+                    // model2->index(curRow,6).data().toDate().daysTo(QDate::currentDate());
+                     qDebug()<<"朝田淑啦"<<(model2->index(curRow,5).data().toDate().daysTo(QDate::currentDate()))*query2.value(1).toInt();
+                    int h=((model2->index(curRow,5).data().toDate().daysTo(QDate::currentDate()))*query2.value(1).toInt());
+                     qDebug()<<h<<QString(h);//
+                     ui->tableWidget_2->setItem(3,1,new QTableWidgetItem(QString::number(h)));
+
+                 }
+                 else if(model2->index(curRow,5).data().toDate()>QDate::currentDate())   //说明还未提车
+                 {
+                     ui->tableWidget_2->setItem(3,1,new QTableWidgetItem("当前未产生费用"));
+                     qDebug()<<"苟利国家生死以";
+                 }
+                 else if(model2->index(curRow,6).data().toDate()<QDate::currentDate())   //说明和没有续租，超期了
+                 {
+                     qDebug()<<"+1s";
+                     int h=model2->index(curRow,5).data().toDate().daysTo(model2->index(curRow,6).data().toDate());
+                     int m=h*query2.value(1).toInt();
+                      qDebug()<<query2.value(1).toInt()<<query2.value(2).toInt()<<"rizujin";
+                     int j=model2->index(curRow,6).data().toDate().daysTo(QDate::currentDate());
+                     int g=j*query2.value(2).toInt();
+                     qDebug()<<h<<m<<"__"<<j<<"haha"<<g;
+                     ui->tableWidget_2->setItem(3,1,new QTableWidgetItem(QString::number(g+m)));
+
+                 }
+             }
+        }
+
+       //获取司机
+        QSqlQuery query3;
+        query3.exec(QString("select drivername from licenseid where licenseid='%1'").arg(model2->index(curRow,3).data().toInt())) ;//"delete from carmodel where carmodelid=")
+        while(query3.next())
+        {
+            ui->tableWidget_2->setItem(2,1,new QTableWidgetItem(query3.value(0).toString()));
+
+        }
+        //原押金
+
+        //ui->tableWidget_2->setItem(0,1,new QTableWidgetItem("车型"));
+        //ui->tableWidget_2->setItem(1,1,new QTableWidgetItem("总押金"));
+       // ui->tableWidget_2->setItem(2,1,new QTableWidgetItem("司机"));
+        //ui->tableWidget_2->setItem(3,1,new QTableWidgetItem("预计租车费"));
+        //ui->tableWidget_2->setItem(4,1,new QTableWidgetItem("初始行驶公里数"));
+        //ui->tableWidget_2->setItem();
+        //ui->tableWidget_2->setItem(i,1,new QTableWidgetItem(query.value(i).toString()));
+
+
+
+}
+
+void manager::on_pushButton_6_clicked()
+{
+    if(ui->checkBox->isChecked())
+    {
+        //ui->dateEdit_4->setEnabled(0);
+       // ui->dateEdit_5->setEnabled(1);
     }
 }

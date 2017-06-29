@@ -669,8 +669,8 @@ color:#000000;</string>
     <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>270</y>
+       <x>300</x>
+       <y>340</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -695,10 +695,33 @@ color:#000000;</string>
     <widget class="QTableWidget" name="tableWidget_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>220</y>
-       <width>256</width>
-       <height>192</height>
+       <x>0</x>
+       <y>230</y>
+       <width>211</width>
+       <height>171</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_21">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>270</y>
+       <width>81</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>当前行驶公里数</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_2">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>290</y>
+       <width>81</width>
+       <height>20</height>
       </rect>
      </property>
     </widget>
@@ -707,26 +730,6 @@ color:#000000;</string>
     <attribute name="title">
      <string>财务</string>
     </attribute>
-    <widget class="QDateEdit" name="dateEdit_4">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>100</y>
-       <width>110</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QDateEdit" name="dateEdit_5">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>150</y>
-       <width>110</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_6">
      <property name="geometry">
       <rect>
@@ -737,54 +740,55 @@ color:#000000;</string>
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>确认查询</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton">
+    <widget class="QWidget" name="verticalLayoutWidget_8">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>260</y>
-       <width>91</width>
-       <height>21</height>
+       <x>100</x>
+       <y>50</y>
+       <width>111</width>
+       <height>121</height>
       </rect>
      </property>
-     <property name="text">
-      <string>时间</string>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_8">
+      <item>
+       <widget class="QDateEdit" name="dateEdit_4"/>
+      </item>
+      <item>
+       <widget class="QDateEdit" name="dateEdit_5"/>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox"/>
+      </item>
+     </layout>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QWidget" name="verticalLayoutWidget_9">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>290</y>
-       <width>71</width>
-       <height>21</height>
+       <x>240</x>
+       <y>70</y>
+       <width>85</width>
+       <height>80</height>
       </rect>
      </property>
-     <property name="text">
-      <string>所有车型</string>
-     </property>
-    </widget>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>40</y>
-       <width>261</width>
-       <height>371</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="comboBox">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>190</y>
-       <width>101</width>
-       <height>22</height>
-      </rect>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <item>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="text">
+         <string>所有时间</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="text">
+         <string>所有车型</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>

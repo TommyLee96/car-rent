@@ -21,16 +21,20 @@ private slots:
     void on_pushButton_clicked();
     void show3();
     void show4();
+    void show5(int state);
+    void show6(int state);
     void showinfo3(int row);
     void showinfo4(int row);
     void on_pushButton_2_clicked();
     void getcar();
 
     void on_pushButton_3_clicked();
-
+    void on_tableView_2_clicked(const QModelIndex &index);
     void on_pushButton_4_clicked();
 
     void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
 
 private:
     Ui::manager *ui;

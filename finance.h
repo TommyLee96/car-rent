@@ -15,6 +15,11 @@ public:
     explicit finance(QWidget *parent = 0);
     ~finance();
 
+private slots:
+    void show1(int state);
+    void show2(int state);
+    void show3(int state);
+
 private:
     Ui::finance *ui;
 };
