@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="image.qrc">
+    <normaloff>:/car.ico</normaloff>:/car.ico</iconset>
+  </property>
   <widget class="QLineEdit" name="user">
    <property name="geometry">
     <rect>
@@ -212,6 +216,8 @@ color:#000000;</string>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="image.qrc"/>
+ </resources>
  <connections/>
 </ui>

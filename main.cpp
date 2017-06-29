@@ -9,6 +9,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    //a.seWindowIcon(QIcon("qrc:/car.ico"));
     if (!createConnection())
     {
         return 1;

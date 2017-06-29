@@ -3,5 +3,6 @@
         <file>1.png</file>
         <file>3.jpg</file>
         <file>4.jpg</file>
+        <file>car.ico</file>
     </qresource>
 </RCC>

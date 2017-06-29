@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="image.qrc">
+    <normaloff>:/car.ico</normaloff>:/car.ico</iconset>
+  </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
@@ -23,7 +27,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -620,9 +624,9 @@ color:#000000;</string>
     <widget class="QTableView" name="tableView_2">
      <property name="geometry">
       <rect>
-       <x>440</x>
+       <x>470</x>
        <y>0</y>
-       <width>411</width>
+       <width>381</width>
        <height>451</height>
       </rect>
      </property>
@@ -639,6 +643,15 @@ color:#000000;</string>
        <height>23</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
+     </property>
      <property name="text">
       <string>确认查询</string>
      </property>
@@ -651,6 +664,15 @@ color:#000000;</string>
        <width>75</width>
        <height>23</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
      </property>
      <property name="text">
       <string>续租</string>
@@ -675,6 +697,15 @@ color:#000000;</string>
        <height>23</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
+     </property>
      <property name="text">
       <string>还车</string>
      </property>
@@ -687,6 +718,9 @@ color:#000000;</string>
        <width>59</width>
        <height>78</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
      </property>
      <property name="text">
       <string>驾驶证号</string>
@@ -733,11 +767,20 @@ color:#000000;</string>
     <widget class="QPushButton" name="pushButton_6">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>280</y>
+       <x>240</x>
+       <y>190</y>
        <width>75</width>
        <height>23</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> border-style:solid;  
+       background: transparent;  
+       background-color: rgb(85, 170, 255); 
+         font: 12pt &quot;微软雅黑&quot;;
+        
+        border-radius: 10px;  
+</string>
      </property>
      <property name="text">
       <string>确认查询</string>
@@ -748,19 +791,34 @@ color:#000000;</string>
       <rect>
        <x>100</x>
        <y>50</y>
-       <width>111</width>
+       <width>113</width>
        <height>151</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_8">
       <item>
-       <widget class="QDateEdit" name="dateEdit_4"/>
+       <widget class="QDateEdit" name="dateEdit_4">
+        <property name="styleSheet">
+         <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="dateEdit_5"/>
+       <widget class="QDateEdit" name="dateEdit_5">
+        <property name="styleSheet">
+         <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="comboBox">
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid gray;
+font: 14pt &quot;Arial&quot;;
+border-radius: 3px;
+</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -769,13 +827,16 @@ color:#000000;</string>
       <rect>
        <x>240</x>
        <y>70</y>
-       <width>85</width>
+       <width>89</width>
        <height>80</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_9">
       <item>
        <widget class="QCheckBox" name="checkBox">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>所有时间</string>
         </property>
@@ -783,6 +844,9 @@ color:#000000;</string>
       </item>
       <item>
        <widget class="QCheckBox" name="checkBox_2">
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;微软雅黑&quot;;</string>
+        </property>
         <property name="text">
          <string>所有车型</string>
         </property>
@@ -796,13 +860,31 @@ color:#000000;</string>
        <x>400</x>
        <y>130</y>
        <width>256</width>
-       <height>192</height>
+       <height>161</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_29">
+     <property name="geometry">
+      <rect>
+       <x>-30</x>
+       <y>230</y>
+       <width>421</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/4.jpg);</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="image.qrc"/>
+ </resources>
  <connections/>
 </ui>
