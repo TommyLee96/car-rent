@@ -54,7 +54,11 @@ admin::admin(QWidget *parent) :
     model3 = new QSqlQueryModel(this);
     model3->setQuery(QString("select * from carinfo where flag!=1"));   //flag=0说明没有被删除
     model3->sort(0,Qt::DescendingOrder);
-
+    ui->label->hide();
+    ui->label_14->hide();
+    ui->label_15->hide();
+    ui->label_16->hide();
+    ui->label_40->hide();
     ui->tableView->setModel(model3);
     ui->tableView->hideColumn(0);
     ui->tableView->hideColumn(1);

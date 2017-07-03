@@ -44,12 +44,14 @@ manager::manager(QWidget *parent) :
      *show4()  为续租
      */
      model2 = new QSqlQueryModel(this);
+     //model2->setQuery(QString("select * from rentinfo where licenseid='%1' and rentstatus='0'").arg(licenidflag));//
+     ui->tableView_2->setModel(model2);
      model2->setQuery(QString("select * from rentinfo where rentstatus='0'"));
      // model2->setQuery(QString("select * from rentinfo"));
 
 
 
-     ui->tableView_2->setModel(model2);
+    // ui->tableView_2->setModel(model2);
      ui->tableView_2->setSelectionBehavior ( QAbstractItemView::SelectRows);
      ui->tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
      //ui->tableView_2->setSelectionBehavior(SelectRows);

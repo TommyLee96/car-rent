@@ -31,7 +31,7 @@
 font: 75 14pt &quot;Arial&quot;;</string>
    </property>
    <property name="text">
-    <string>系统暂时没有该驾驶证信息，请补充完整信息</string>
+    <string>系统暂时没有该驾驶证信息，请填写信息</string>
    </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
