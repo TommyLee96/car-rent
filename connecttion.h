@@ -16,10 +16,10 @@ static bool createConnection()
                                            "DATABASE=%2;"//数据库名
                                            "UID=%3;"
                                            "PWD=%4;"
-                                           ).arg("106.14.165.15")//服务器名称106.14.165.15
-                                   .arg("SqlProjectDesign")//数据库名
-                                   .arg("lzw")//登录名
-                                   .arg("111")//密码
+                                           ).arg("")//服务器名称106.14.165.15
+                                   .arg("")//数据库名
+                                   .arg("")//登录名
+                                   .arg("")//密码
                                    );
 
     if(!db.open())
